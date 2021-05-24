@@ -5,15 +5,17 @@ Trabalhos da Disciplina de Desenvolvimento de Software para Web 1<br />
 AA1: desenvolvimento de um sistema utilizando JSP, Servlet e JDBC <br />
 AA2: desenvolvimento de um sistema utilizando Spring MVC e JPA <br />
 AA3: desenvolvimento de um sistema (back end) utilizando REST AP<br />
+<br/>
 
-Sistema:<br />
+<h2> Sistema </h2>
 Sistema para oferta de vagas de estágios/empregos (A)<br />
 
-Alunos:<br />
+<h2>Alunos </h2>
 Igor Lúcio Manta Guedes<br />
-Yuri Gabriel Aragão da Silva<br />
 Victória De Martini de Souza<br />
+Yuri Gabriel Aragão da Silva<br />
 
-Professor:<br />
+
+<h2>Professor</h2>
 Delano Medeiros Beder<br />
 
