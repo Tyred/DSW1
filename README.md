@@ -1,19 +1,19 @@
 # DSW1
-Trabalhos da Disciplina de Desenvolvimento de Software para Web 1
+Trabalhos da Disciplina de Desenvolvimento de Software para Web 1<br />
 
+<h2> Atividades previstas pro semestre </h2>
+AA1: desenvolvimento de um sistema utilizando JSP, Servlet e JDBC <br />
+AA2: desenvolvimento de um sistema utilizando Spring MVC e JPA <br />
+AA3: desenvolvimento de um sistema (back end) utilizando REST AP<br />
 
-AA1: desenvolvimento de um sistema utilizando JSP, Servlet e JDBC 
-AA2: desenvolvimento de um sistema utilizando Spring MVC e JPA 
-AA3: desenvolvimento de um sistema (back end) utilizando REST AP
+Sistema:<br />
+Sistema para oferta de vagas de estágios/empregos (A)<br />
 
-Sistemna:
-Sistema para oferta de vagas de estágios/empregos (A)
+Alunos:<br />
+Igor Lúcio Manta Guedes<br />
+Yuri Gabriel Aragão da Silva<br />
+Victória De Martini de Souza<br />
 
-Alunos:
-Igor Lúcio Manta Guedes
-Yuri Gabriel Aragão da Silva
-Victória De Martini de Souza
-
-Professor
-Delano Medeiros Beder
+Professor:<br />
+Delano Medeiros Beder<br />
 
