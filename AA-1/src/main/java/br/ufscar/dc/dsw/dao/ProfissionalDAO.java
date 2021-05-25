@@ -7,36 +7,38 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import br.ufscar.dc.dsw.domain.Usuario;
+import br.ufscar.dc.dsw.domain.Profissional;
 
-public class UsuarioDAO extends GenericDAO {
+public class ProfissionalDAO extends GenericDAO {
 
-    public static Usuario setUsuario(ResultSet rs) throws SQLException {
-        Usuario usuario = new Usuario();
-
+    public static Profissional setProfissional(ResultSet rs) throws SQLException {
+        Profissional profissional = new Profissional();
         try {
-            usuario.setId(rs.getLong("u.id"));
-            usuario.setNome(rs.getString("u.nome"));
-            usuario.setEmail(rs.getString("u.email"));
-            usuario.setSenha(rs.getString("u.senha"));
-            usuario.setAdmin(rs.getBoolean("u.is_admin"));
+            profissional.setId(rs.getLong("p.id"));
+            profissional.setUsuario(UsuarioDAO.setUsuario(rs));
+            profissional.setCPF(rs.getString("p.cpf"));
+            profissional.setTelefone(rs.getString("p.telefone"));
+            profissional.setSexo(rs.getString("p.sexo"));
+            profissional.setDataNascimento(rs.getDate("p.data_nascimento"));
+
         } catch (SQLException e) {
             throw new SQLException(e);
         }
-        return usuario;
+        return profissional;
     }
 
-    public void insert(Usuario usuario) {
-        String sql = "INSERT INTO usuario (nome, email, senha, is_admin) VALUES (?, ?, ?, ?)";
+    public void insert(Profissional profissional) {
+        String sql = "INSERT INTO profissional (id_profissional, cpf, telefone, sexo, data_nascimento) VALUES (?, ?, ?, ?, ?)";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             ;
             statement = conn.prepareStatement(sql);
-            statement.setString(1, usuario.getNome());
-            statement.setString(2, usuario.getEmail());
-            statement.setString(3, usuario.getSenha());
-            statement.setBoolean(4, usuario.isAdmin());
+            statement.setLong(1, profissional.getUsuario().getId());
+            statement.setString(2, profissional.getCPF());
+            statement.setString(3, profissional.getTelefone());
+            statement.setString(4, profissional.getSexo());
+            statement.setDate(5, profissional.getDataNascimento());
             statement.executeUpdate();
             statement.close();
             conn.close();
@@ -45,15 +47,15 @@ public class UsuarioDAO extends GenericDAO {
         }
     }
 
-    public List<Usuario> getAll() {
-        List<Usuario> listaUsuarios = new ArrayList<>();
-        String sql = "SELECT * from usuario u";
+    public List<Profissional> getAll() {
+        List<Profissional> listaProfissionals = new ArrayList<>();
+        String sql = "SELECT * from profissional p, usuario u WHERE p.id_usuario = u.id";
         try {
             Connection conn = this.getConnection();
             Statement statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                listaUsuarios.add(setUsuario(resultSet));
+                listaProfissionals.add(setProfissional(resultSet));
             }
             resultSet.close();
             statement.close();
@@ -61,15 +63,15 @@ public class UsuarioDAO extends GenericDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return listaUsuarios;
+        return listaProfissionals;
     }
 
-    public void delete(Usuario usuario) {
-        String sql = "DELETE FROM usuario where id = ?";
+    public void delete(Profissional profissional) {
+        String sql = "DELETE FROM profissional where id = ?";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setLong(1, usuario.getId());
+            statement.setLong(1, profissional.getId());
             statement.executeUpdate();
             statement.close();
             conn.close();
@@ -77,16 +79,17 @@ public class UsuarioDAO extends GenericDAO {
         }
     }
 
-    public void update(Usuario usuario) {
-        String sql = "UPDATE usuario SET nome = ?, email = ?, senha = ?, is_admin = ? WHERE id = ?";
+    public void update(Profissional profissional) {
+        String sql = "UPDATE profissional SET cpf = ?, telefone = ?, sexo = ?, data_nascimento = ? WHERE id = ?";
 
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, usuario.getNome());
-            statement.setString(2, usuario.getEmail());
-            statement.setString(3, usuario.getSenha());
-            statement.setBoolean(4, usuario.isAdmin());
+            statement.setString(1, profissional.getCPF());
+            statement.setString(2, profissional.getTelefone());
+            statement.setString(3, profissional.getSexo());
+            statement.setDate(4, profissional.getDataNascimento());
+            statement.setLong(5, profissional.getId());
             statement.executeUpdate();
             statement.close();
             conn.close();
@@ -95,16 +98,16 @@ public class UsuarioDAO extends GenericDAO {
         }
     }
 
-    public Usuario getbyID(Long id) {
-        Usuario usuario = null;
-        String sql = "SELECT * from usuario u WHERE id = ?";
+    public Profissional getbyID(Long id) {
+        Profissional profissional = new Profissional();
+        String sql = "SELECT * from profissional p, usuario u WHERE p.id_usuario = u.id AND id = ?";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                usuario = setUsuario(resultSet);
+                profissional = setProfissional(resultSet);
             }
             resultSet.close();
             statement.close();
@@ -112,23 +115,19 @@ public class UsuarioDAO extends GenericDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return usuario;
+        return profissional;
     }
 
-    public Usuario getbyemail(String email) {
-        Usuario usuario = null;
-        String sql = "SELECT * from usuario u WHERE email = ?";
+    public Profissional getbyemail(String email) {
+        Profissional profissional = new Profissional();
+        String sql = "SELECT * from profissional p, usuario u WHERE p.id_usuario = u.id AND email = ?";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                Long id = resultSet.getLong("id");
-                String nome = resultSet.getString("nome");
-                String senha = resultSet.getString("senha");
-                boolean isAdmin = resultSet.getBoolean("is_admin");
-                usuario = new Usuario(id, email, nome, senha, isAdmin);
+                profissional = setProfissional(resultSet);
             }
             resultSet.close();
             statement.close();
@@ -136,6 +135,6 @@ public class UsuarioDAO extends GenericDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return usuario;
+        return profissional;
     }
 }

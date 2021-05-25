@@ -8,6 +8,9 @@ public class Usuario {
     private String senha;
     private boolean isAdmin;
 
+    public Usuario() {
+    }
+
     public Usuario(Long id) {
         this.id = id;
     }
@@ -26,7 +29,7 @@ public class Usuario {
         this.senha = senha;
         this.isAdmin = isAdmin;
     }
-    
+
     public Long getId() {
         return id;
     }

@@ -10,6 +10,9 @@ public class Profissional {
     private String sexo;
     private Date dataNascimento;
 
+    public Profissional() {
+    }
+
     public Profissional(Long id) {
         this.id = id;
     }
