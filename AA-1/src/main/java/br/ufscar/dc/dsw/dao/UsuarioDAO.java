@@ -12,7 +12,7 @@ import br.ufscar.dc.dsw.domain.Usuario;
 public class UsuarioDAO extends GenericDAO {
 
     public void insert(Usuario usuario) {    
-        String sql = "INSERT INTO Usuario (nome, email, senha) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Usuario (nome, email, senha, is_admin) VALUES (?, ?, ?, ?)";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);;    
@@ -20,6 +20,7 @@ public class UsuarioDAO extends GenericDAO {
             statement.setString(1, usuario.getNome());
             statement.setString(2, usuario.getEmail());
             statement.setString(3, usuario.getSenha());
+            statement.setBoolean(4, usuario.isAdmin());
             statement.executeUpdate();
             statement.close();
             conn.close();
@@ -40,7 +41,8 @@ public class UsuarioDAO extends GenericDAO {
                 String nome = resultSet.getString("nome");
                 String email = resultSet.getString("email");
                 String senha = resultSet.getString("senha");
-                Usuario usuario = new Usuario(id, nome, email, senha);
+                boolean isAdmin = resultSet.getBoolean("is_admin");
+                Usuario usuario = new Usuario(id, nome, email, senha, isAdmin);
                 listaUsuarios.add(usuario);
             }
             resultSet.close();
@@ -66,7 +68,7 @@ public class UsuarioDAO extends GenericDAO {
     }
     
     public void update(Usuario usuario) {
-        String sql = "UPDATE usuario SET nome = ?, email = ?, senha = ? WHERE id = ?";
+        String sql = "UPDATE usuario SET nome = ?, email = ?, senha = ?, is_admin = ? WHERE id = ?";
     
         try {
             Connection conn = this.getConnection();
@@ -74,6 +76,7 @@ public class UsuarioDAO extends GenericDAO {
             statement.setString(1, usuario.getNome());
             statement.setString(2, usuario.getEmail());
             statement.setString(3, usuario.getSenha());
+            statement.setBoolean(4, usuario.isAdmin());
             statement.executeUpdate();
             statement.close();
             conn.close();
@@ -94,7 +97,8 @@ public class UsuarioDAO extends GenericDAO {
                 String nome = resultSet.getString("nome");
                 String email = resultSet.getString("email");
                 String senha = resultSet.getString("senha");
-                usuario = new Usuario(id, email, nome, senha);
+                boolean isAdmin = resultSet.getBoolean("is_admin");
+                usuario = new Usuario(id, email, nome, senha, isAdmin);
             }
             resultSet.close();
             statement.close();
@@ -117,7 +121,8 @@ public class UsuarioDAO extends GenericDAO {
             	Long id = resultSet.getLong("id");
                 String nome = resultSet.getString("nome");
                 String senha = resultSet.getString("senha");
-                usuario = new Usuario(id, email, nome, senha);
+                boolean isAdmin = resultSet.getBoolean("is_admin");
+                usuario = new Usuario(id, email, nome, senha, isAdmin);
             }
             resultSet.close();
             statement.close();

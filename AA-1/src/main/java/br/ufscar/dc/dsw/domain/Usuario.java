@@ -6,22 +6,25 @@ public class Usuario {
     private String email;
     private String nome;
     private String senha;
+    private boolean isAdmin;
 
     public Usuario(Long id) {
         this.id = id;
     }
 
-    public Usuario(String email, String nome, String senha) {
+    public Usuario(String email, String nome, String senha, boolean isAdmin) {
         this.email = email;
         this.nome = nome;
         this.senha = senha;
+        this.isAdmin = isAdmin;
     }
 
-    public Usuario(Long id, String email, String nome, String senha) {
+    public Usuario(Long id, String email, String nome, String senha, boolean isAdmin) {
         this.id = id;
         this.email = email;
         this.nome = nome;
         this.senha = senha;
+        this.isAdmin = isAdmin;
     }
     
     public Long getId() {
@@ -54,5 +57,13 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 }
