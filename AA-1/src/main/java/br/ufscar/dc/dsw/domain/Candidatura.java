@@ -25,6 +25,17 @@ public class Candidatura {
         this.linkEntrevista = linkEntrevista;
     }
 
+    public Candidatura(Long id, Profissional profissional, Vaga vaga, String curriculo, String status,
+            Date dataEntrevista, String linkEntrevista) {
+        this.id = id;
+        this.profissional = profissional;
+        this.vaga = vaga;
+        this.curriculo = curriculo;
+        this.status = status;
+        this.dataEntrevista = dataEntrevista;
+        this.linkEntrevista = linkEntrevista;
+    }
+
     public Long getId() {
         return id;
     }

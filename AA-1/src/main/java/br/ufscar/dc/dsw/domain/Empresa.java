@@ -18,6 +18,14 @@ public class Empresa {
         this.cidade = cidade;
     }
 
+    public Empresa(Long id, Usuario usuario, String cNPJ, String descricao, String cidade) {
+        this.id = id;
+        this.usuario = usuario;
+        CNPJ = cNPJ;
+        this.descricao = descricao;
+        this.cidade = cidade;
+    }
+
     public Long getId() {
         return id;
     }

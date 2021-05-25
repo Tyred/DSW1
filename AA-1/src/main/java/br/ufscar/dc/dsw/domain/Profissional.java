@@ -22,6 +22,15 @@ public class Profissional {
         this.dataNascimento = dataNascimento;
     }
 
+    public Profissional(Long id, Usuario usuario, String cPF, String telefone, String sexo, Date dataNascimento) {
+        this.id = id;
+        this.usuario = usuario;
+        CPF = cPF;
+        this.telefone = telefone;
+        this.sexo = sexo;
+        this.dataNascimento = dataNascimento;
+    }
+
     public Long getId() {
         return id;
     }

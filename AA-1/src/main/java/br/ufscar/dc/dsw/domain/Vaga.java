@@ -20,6 +20,14 @@ public class Vaga {
         this.dataLimite = dataLimite;
     }
 
+    public Vaga(Long id, Empresa empresa, String descricao, Double remuneracao, Date dataLimite) {
+        this.id = id;
+        this.empresa = empresa;
+        this.descricao = descricao;
+        this.remuneracao = remuneracao;
+        this.dataLimite = dataLimite;
+    }
+
     public Long getId() {
         return id;
     }
