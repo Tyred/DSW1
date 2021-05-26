@@ -39,6 +39,7 @@ public class IndexController extends HttpServlet {
 					if (usuario.getSenha().equals(senha)) {
 						request.getSession().setAttribute("usuarioLogado", usuario);
 						response.sendRedirect("admin/");
+                        return;
 					} else {
 						erros.add("Senha inválida!");
 					}
