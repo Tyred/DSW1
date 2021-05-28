@@ -11,6 +11,9 @@ public class Candidatura {
     private Date dataEntrevista;
     private String linkEntrevista;
 
+    public Candidatura(){
+    }
+
     public Candidatura(Long id) {
         this.id = id;
     }

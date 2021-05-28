@@ -7,6 +7,9 @@ public class Empresa {
     private String descricao;
     private String cidade;
 
+    public Empresa() {
+    }
+
     public Empresa(Long id) {
         this.id = id;
     }

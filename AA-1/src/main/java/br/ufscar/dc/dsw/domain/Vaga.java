@@ -9,6 +9,9 @@ public class Vaga {
     private Double remuneracao;
     private Date dataLimite;
 
+    public Vaga() {
+    }
+
     public Vaga(Long id) {
         this.id = id;
     }

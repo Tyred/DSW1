@@ -7,35 +7,35 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import br.ufscar.dc.dsw.domain.Usuario;
+import br.ufscar.dc.dsw.domain.Vaga;
 
-public class UsuarioDAO extends GenericDAO {
+public class VagaDAO extends GenericDAO {
 
-    public static Usuario setUsuario(ResultSet rs) throws SQLException {
-        Usuario usuario = new Usuario();
+    public static Vaga setVaga(ResultSet rs) throws SQLException {
+        Vaga vaga = new Vaga();
 
         try {
-            usuario.setId(rs.getLong("u.id"));
-            usuario.setNome(rs.getString("u.nome"));
-            usuario.setEmail(rs.getString("u.email"));
-            usuario.setSenha(rs.getString("u.senha"));
-            usuario.setAdmin(rs.getBoolean("u.is_admin"));
+            vaga.setId(rs.getLong("v.id"));
+            vaga.setEmpresa(EmpresaDAO.setEmpresa(rs));
+            vaga.setDescricao(rs.getString("v.descricao"));
+            vaga.setRemuneracao(rs.getDouble("v.remuneracao"));
+            vaga.setDataLimite(rs.getDate("v.data_limite"));
         } catch (SQLException e) {
             throw new SQLException(e);
         }
-        return usuario;
+        return vaga;
     }
 
-    public void insert(Usuario usuario) {
-        String sql = "INSERT INTO usuario (nome, email, senha, is_admin) VALUES (?, ?, ?, ?)";
+    public void insert(Vaga vaga) {
+        String sql = "INSERT INTO vaga (id_empresa, descricao, remuneracao, data_limite) VALUES (?, ?, ?, ?)";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement = conn.prepareStatement(sql);
-            statement.setString(1, usuario.getNome());
-            statement.setString(2, usuario.getEmail());
-            statement.setString(3, usuario.getSenha());
-            statement.setBoolean(4, usuario.isAdmin());
+            statement.setLong(1, vaga.getEmpresa().getId());
+            statement.setString(2, vaga.getDescricao());
+            statement.setDouble(3, vaga.getRemuneracao());
+            statement.setDate(4, vaga.getDataLimite());
             statement.executeUpdate();
             statement.close();
             conn.close();
@@ -44,15 +44,15 @@ public class UsuarioDAO extends GenericDAO {
         }
     }
 
-    public List<Usuario> getAll() {
-        List<Usuario> listaUsuarios = new ArrayList<>();
-        String sql = "SELECT * FROM usuario u";
+    public List<Vaga> getAll() {
+        List<Vaga> listaVagas = new ArrayList<>();
+        String sql = "SELECT * FROM vaga v, empresa e, usuario u WHERE v.id_empresa = e.id AND e.id_usuario = u.id";
         try {
             Connection conn = this.getConnection();
             Statement statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                listaUsuarios.add(setUsuario(resultSet));
+                listaVagas.add(setVaga(resultSet));
             }
             resultSet.close();
             statement.close();
@@ -60,15 +60,15 @@ public class UsuarioDAO extends GenericDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return listaUsuarios;
+        return listaVagas;
     }
 
-    public void delete(Usuario usuario) {
-        String sql = "DELETE FROM usuario WHERE id = ?";
+    public void delete(Vaga vaga) {
+        String sql = "DELETE FROM vaga WHERE id = ?";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setLong(1, usuario.getId());
+            statement.setLong(1, vaga.getId());
             statement.executeUpdate();
             statement.close();
             conn.close();
@@ -77,17 +77,16 @@ public class UsuarioDAO extends GenericDAO {
         }
     }
 
-    public void update(Usuario usuario) {
-        String sql = "UPDATE usuario SET nome = ?, email = ?, senha = ?, is_admin = ? WHERE id = ?";
-
+    public void update(Vaga vaga) {
+        String sql = "UPDATE vaga SET descricao = ?, remuneracao = ?, data_limite = ? WHERE id = ?";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, usuario.getNome());
-            statement.setString(2, usuario.getEmail());
-            statement.setString(3, usuario.getSenha());
-            statement.setBoolean(4, usuario.isAdmin());
-            statement.setLong(5, usuario.getId());
+            statement = conn.prepareStatement(sql);
+            statement.setString(1, vaga.getDescricao());
+            statement.setDouble(2, vaga.getRemuneracao());
+            statement.setDate(3, vaga.getDataLimite());
+            statement.setLong(4, vaga.getId());
             statement.executeUpdate();
             statement.close();
             conn.close();
@@ -96,16 +95,16 @@ public class UsuarioDAO extends GenericDAO {
         }
     }
 
-    public Usuario getByID(Long idUsuario) {
-        Usuario usuario = null;
-        String sql = "SELECT * FROM usuario u WHERE id = ?";
+    public Vaga getByID(Long idVaga) {
+        Vaga vaga = null;
+        String sql = "SELECT * FROM vaga v, empresa e, usuario u WHERE v.id_empresa = e.id AND e.id_usuario = u.id AND v.id = ?";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setLong(1, idUsuario);
+            statement.setLong(1, idVaga);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                usuario = setUsuario(resultSet);
+                vaga = setVaga(resultSet);
             }
             resultSet.close();
             statement.close();
@@ -113,23 +112,19 @@ public class UsuarioDAO extends GenericDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return usuario;
+        return vaga;
     }
 
-    public Usuario getByEmail(String emailUsuario) {
-        Usuario usuario = null;
-        String sql = "SELECT * FROM usuario u WHERE email = ?";
+    public List<Vaga> getAllByEmpresa(Long idEmpresa) {
+        List<Vaga> listaVagas = new ArrayList<>();
+        String sql = "SELECT * FROM vaga v, empresa e, usuario u WHERE v.id_empresa = e.id AND e.id_usuario = u.id AND e.id = ?";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, emailUsuario);
+            statement.setLong(1, idEmpresa);
             ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                Long id = resultSet.getLong("id");
-                String nome = resultSet.getString("nome");
-                String senha = resultSet.getString("senha");
-                boolean isAdmin = resultSet.getBoolean("is_admin");
-                usuario = new Usuario(id, emailUsuario, nome, senha, isAdmin);
+            while (resultSet.next()) {
+                listaVagas.add(setVaga(resultSet));
             }
             resultSet.close();
             statement.close();
@@ -137,6 +132,6 @@ public class UsuarioDAO extends GenericDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return usuario;
+        return listaVagas;
     }
 }

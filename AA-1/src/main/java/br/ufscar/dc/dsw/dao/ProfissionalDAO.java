@@ -49,7 +49,7 @@ public class ProfissionalDAO extends GenericDAO {
 
     public List<Profissional> getAll() {
         List<Profissional> listaProfissionals = new ArrayList<>();
-        String sql = "SELECT * from profissional p, usuario u WHERE p.id_usuario = u.id";
+        String sql = "SELECT * FROM profissional p, usuario u WHERE p.id_usuario = u.id";
         try {
             Connection conn = this.getConnection();
             Statement statement = conn.createStatement();
@@ -67,7 +67,7 @@ public class ProfissionalDAO extends GenericDAO {
     }
 
     public void delete(Profissional profissional) {
-        String sql = "DELETE FROM profissional where id = ?";
+        String sql = "DELETE FROM profissional WHERE id = ?";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
@@ -98,13 +98,13 @@ public class ProfissionalDAO extends GenericDAO {
         }
     }
 
-    public Profissional getbyID(Long id) {
+    public Profissional getByID(Long idProfissional) {
         Profissional profissional = new Profissional();
-        String sql = "SELECT * from profissional p, usuario u WHERE p.id_usuario = u.id AND id = ?";
+        String sql = "SELECT * FROM profissional p, usuario u WHERE p.id_usuario = u.id AND id = ?";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setLong(1, id);
+            statement.setLong(1, idProfissional);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 profissional = setProfissional(resultSet);
@@ -118,13 +118,13 @@ public class ProfissionalDAO extends GenericDAO {
         return profissional;
     }
 
-    public Profissional getbyemail(String email) {
+    public Profissional getByEmail(String emailProfissional) {
         Profissional profissional = new Profissional();
-        String sql = "SELECT * from profissional p, usuario u WHERE p.id_usuario = u.id AND email = ?";
+        String sql = "SELECT * FROM profissional p, usuario u WHERE p.id_usuario = u.id AND u.email = ?";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, email);
+            statement.setString(1, emailProfissional);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 profissional = setProfissional(resultSet);
