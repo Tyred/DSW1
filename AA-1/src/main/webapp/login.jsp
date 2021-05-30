@@ -8,7 +8,7 @@
             <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                 <title>Autenticação</title>
-                <link rel="icon" type="imagem/png" href="https://img.icons8.com/material/452/padlock-outline.png" />
+                <link rel="icon" type="imagem/png" href="https://image.flaticon.com/icons/png/512/181/181534.png" />
                 <link href="${pageContext.request.contextPath}/login.css" rel="stylesheet" type="text/css" />
             </head>
 
@@ -16,7 +16,7 @@
                 <div class="container">
                     <div class="card">
                         <div class="title">
-                            <img src="https://img.icons8.com/material/452/padlock-outline.png">
+                            <img src="https://image.flaticon.com/icons/png/512/181/181534.png">
                             <h1>
                                 Autenticação de usuário</h1>
                         </div>
