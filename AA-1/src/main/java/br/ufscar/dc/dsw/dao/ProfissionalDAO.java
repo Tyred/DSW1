@@ -118,6 +118,26 @@ public class ProfissionalDAO extends GenericDAO {
         return profissional;
     }
 
+    public Profissional getByID_Usuario(Long idProfissional) {
+        Profissional profissional = new Profissional();
+        String sql = "SELECT * FROM profissional p, usuario u WHERE p.id_usuario = u.id AND p.id_usuario = ?";
+        try {
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setLong(1, idProfissional);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                profissional = setProfissional(resultSet);
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return profissional;
+    }
+
     public Profissional getByEmail(String emailProfissional) {
         Profissional profissional = new Profissional();
         String sql = "SELECT * FROM profissional p, usuario u WHERE p.id_usuario = u.id AND u.email = ?";
