@@ -22,7 +22,7 @@
                 </div>
 
             </div>
-
+            <a href="${pageContext.request.contextPath}/usuarios" class="sair">CRUD Usuários</a>
 
 
         </body>
