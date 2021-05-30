@@ -50,7 +50,7 @@ public class IndexController extends HttpServlet {
 		}
 		request.getSession().invalidate();
 		request.setAttribute("mensagens", erros);
-		String URL = "/login.jsp";
+		String URL = "/listaVagas.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(URL);
 		rd.forward(request, response);
 	}
