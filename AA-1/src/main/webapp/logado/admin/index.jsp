@@ -5,20 +5,20 @@
 
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>Menu</title>
-            <link rel="icon" type="imagem/png"
-                href=" https://cdn3.iconfinder.com/data/icons/search-engine-optimization-plus/64/crud_create_read_update_delete-512.png" />
+            <title>Dashboard</title>
+            <link rel="icon" type="imagem/png" href="https://cdn.iconscout.com/icon/free/png-256/dashboard-1739866-1481441.png" />
+            <link href="${pageContext.request.contextPath}/index.css" rel="stylesheet" type="text/css" />
 
         </head>
 
         <body>
-            <div class="navbar"
-                style="display: flex; justify-content: space-between; justify-items: center; background-color: cyan; ">
-                <h1 style="font-size: 26px; margin-left: 20px; margin-top: 30px;">Página do Administrador</h1>
-                <div class="rigth" style="margin-bottom: 10px;">
-                    <p style="font-size: 22px; margin-right: 20px;">Olá ${sessionScope.usuarioLogado.nome}</p>
-                    <a href="${pageContext.request.contextPath}/logout.jsp"
-                        style="font-size:22px; margin-left: 25px; margin-top: 10px; ">Sair</a>
+            <div class="navbar">
+
+                <img src="https://cdn.iconscout.com/icon/free/png-256/dashboard-1739866-1481441.png" />
+                <h1>Dashboard</h1>
+                <div class="rigth">
+                    <p>Olá, ${sessionScope.usuarioLogado.nome}! ;)</p>
+                    <a href="${pageContext.request.contextPath}/logout.jsp" class="sair">Sair</a>
                 </div>
 
             </div>

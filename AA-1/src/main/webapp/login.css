@@ -31,11 +31,12 @@ h1 {
     display: flex;
     justify-content: center;
     justify-items: center;
+    margin-left: 15px;
 }
 
 img {
     margin-top: 50px;
-    margin-right: 5px;
+    margin-right: 10px;
     width: 32px;
     height: 32px;
 }
