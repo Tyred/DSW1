@@ -20,8 +20,43 @@
                     <a href="${pageContext.request.contextPath}/login.jsp" class="vagas">login</a>
                 </div>
 
-            </div>
 
+            </div>
+            <div class="tabelaVagas">
+                <h2> Olá candidato, é um prazer te receber. As vagas com inscrição em aberto são as seguintes:</h2>
+                <table border="1">
+                    <tr>
+                        <th style="width: 400px;">Vaga</th>
+                        <th style="width: 200px;">Inscrição aberta até</th>
+                        <th style="width: 150px;"></th>
+                    </tr>
+                    <tr>
+                        <td>Ted</td>
+                        <td>22</td>
+                        <td><a href="#"> inscreva-se </a></td>
+                    </tr>
+                    <tr>
+                        <td>Ralf</td>
+                        <td>26</td>
+                        <td><a href="#"> inscreva-se </a></td>
+                    </tr>
+                    <tr>
+                        <td>Ralf</td>
+                        <td>26</td>
+                        <td><a href="#"> inscreva-se </a></td>
+                    </tr>
+                    <tr>
+                        <td>Ralf</td>
+                        <td>26</td>
+                        <td><a href="#"> inscreva-se </a></td>
+                    </tr>
+                    <tr>
+                        <td>Ralf</td>
+                        <td>26</td>
+                        <td><a href="#"> inscreva-se </a></td>
+                    </tr>
+                </table>
+            </div>
 
 
         </body>

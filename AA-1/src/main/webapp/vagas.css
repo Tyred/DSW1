@@ -10,8 +10,8 @@ h1 {
 }
 
 img {
-    width: 50px;
-    height: 50px;
+    width: 42px;
+    height: 42px;
     margin-top: 8px;
     margin-right: 20px;
     margin-left: 50px;
@@ -36,10 +36,14 @@ p {
 }
 
 .vagas {
-    font-size: 22px;
+    font-size: 20px;
     margin-left: 25px;
     margin-right: 10px;
     margin-top: 22px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     text-decoration: none;
+}
+
+.tabelaVagas {
+    padding: 20px 70px;
 }
