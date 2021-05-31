@@ -2,6 +2,7 @@
 <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
+    <fmt:bundle basename="message">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -28,9 +29,15 @@
                 <a href="${pageContext.request.contextPath}/usuarios" class="sair">Gerenciar usuários</a>
             </li>
         </ul>
+        <ul>
+            <li>
+                <a href="${pageContext.request.contextPath}/profissionais" class="sair">Gerenciar profissionais</a>
+            </li>
+        </ul>
     </div>
 
 
 </body>
+</fmt:bundle>
 
 </html>

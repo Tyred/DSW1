@@ -8,10 +8,10 @@
   <caption>
     <c:choose>
       <c:when test="${usuario != null}">
-        <fmt:message key="users.update" />
+        <fmt:message key="usuario.atualizar" />
       </c:when>
       <c:otherwise>
-        <fmt:message key="users.create" />
+        <fmt:message key="usuario.criar" />
       </c:otherwise>
     </c:choose>
   </caption>
@@ -20,7 +20,7 @@
   </c:if>
   <tr>
     <td>
-      <label for="nome"> <fmt:message key="user.name" /> </label>
+      <label for="nome"> <fmt:message key="usuario.nome" /> </label>
     </td>
     <td>
       <input
@@ -39,7 +39,7 @@
   </tr>
   <tr>
     <td>
-      <label for="senha"> <fmt:message key="user.password" /> </label>
+      <label for="senha"> <fmt:message key="usuario.senha" /> </label>
     </td>
     <td>
       <input
@@ -49,7 +49,7 @@
   </tr>
   <tr>
     <td>
-      <label for="admin"> <fmt:message key="user.admin" /> </label>
+      <label for="admin"> <fmt:message key="usuario.admin" /> </label>
     </td>
     <td>
       <input
@@ -59,7 +59,7 @@
   </tr>
   <tr>
     <td colspan="2" align="center">
-      <input type="submit" value="<fmt:message key="save.link" />" />
+      <input type="submit" value="<fmt:message key="link.salvar" />" />
     </td>
   </tr>
 </table>
