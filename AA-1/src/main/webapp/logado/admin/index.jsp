@@ -1,14 +1,8 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
-<<<<<<< HEAD
-    <%@ page isELIgnored="false" %>
-        <!DOCTYPE html>
-        <html>
-=======
 <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
     <fmt:bundle basename="message">
->>>>>>> f8266d356cd19371a97f7839373b63e0db5fe489
 
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -30,10 +24,6 @@
                 </div>
             </div>
 
-<<<<<<< HEAD
-
-
-=======
     <div style="margin-top: 2rem;">
         <ul>
             <li>
@@ -50,7 +40,6 @@
 
 </body>
 </fmt:bundle>
->>>>>>> f8266d356cd19371a97f7839373b63e0db5fe489
 
         </body>
 
