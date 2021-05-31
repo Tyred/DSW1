@@ -28,7 +28,7 @@ public class ProfissionalDAO extends GenericDAO {
     }
 
     public void insert(Profissional profissional) {
-        String sql = "INSERT INTO profissional (id_profissional, cpf, telefone, sexo, data_nascimento) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO profissional (id_usuario, cpf, telefone, sexo, data_nascimento) VALUES (?, ?, ?, ?, ?)";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
@@ -100,7 +100,7 @@ public class ProfissionalDAO extends GenericDAO {
 
     public Profissional getByID(Long idProfissional) {
         Profissional profissional = new Profissional();
-        String sql = "SELECT * FROM profissional p, usuario u WHERE p.id_usuario = u.id AND id = ?";
+        String sql = "SELECT * FROM profissional p, usuario u WHERE p.id_usuario = u.id AND p.id = ?";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);

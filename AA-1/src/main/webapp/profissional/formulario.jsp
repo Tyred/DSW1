@@ -13,11 +13,11 @@ pageEncoding="UTF-8"%>
       <% String contextPath = request.getContextPath().replace("/", ""); %>
       <div align="center">
         <c:choose>
-          <c:when test="${usuario != null}">
+          <c:when test="${profissional != null}">
             <form action="atualizar" method="post">
               <%@include file="campos.jsp"%>
             </form>
-            <a href="/<%= contextPath%>/usuarios/remover?id=${usuario.id}"
+            <a href="/<%= contextPath%>/profissionais/remover?id=${profissional.id}"
               onclick="return confirm('<fmt:message key="link.confirmar" />')">
               <fmt:message key="usuario.remover" />
             </a>
