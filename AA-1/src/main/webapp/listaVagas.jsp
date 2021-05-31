@@ -16,7 +16,7 @@
 
                 <img src="https://img.icons8.com/ios/452/ingredients-list.png" />
                 <h1>Vagas</h1>
-                <div class="rigth">
+                <div class="right">
                     <a href="${pageContext.request.contextPath}/login.jsp" class="vagas">login</a>
                 </div>
 

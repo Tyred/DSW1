@@ -17,6 +17,10 @@ pageEncoding="UTF-8"%>
             <form action="atualizar" method="post">
               <%@include file="campos.jsp"%>
             </form>
+            <a href="/<%= contextPath%>/usuarios/remover?id=${usuario.id}"
+              onclick="return confirm('<fmt:message key="confirm.link" />')">
+              <fmt:message key="users.delete" />
+            </a>
           </c:when>
           <c:otherwise>
             <form action="inserir" method="post">

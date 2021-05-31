@@ -63,6 +63,26 @@ public class UsuarioDAO extends GenericDAO {
         return listaUsuarios;
     }
 
+    public List<Usuario> getAllWithoutRole() {
+        List<Usuario> listaUsuarios = new ArrayList<>();
+        String sql = "SELECT u.* FROM usuario u WHERE u.id NOT IN (SELECT user.id FROM " +
+        "usuario user, profissional p, empresa e WHERE user.id = p.id_usuario OR user.id = e.id_usuario)";
+        try {
+            Connection conn = this.getConnection();
+            Statement statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                listaUsuarios.add(setUsuario(resultSet));
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listaUsuarios;
+    }
+
     public void delete(Usuario usuario) {
         String sql = "DELETE FROM usuario WHERE id = ?";
         try {

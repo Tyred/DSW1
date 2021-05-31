@@ -23,7 +23,7 @@ img {
     background-color: cyan;
 }
 
-.rigth {
+.right {
     display: flex;
     justify-items: center;
     justify-content: center;

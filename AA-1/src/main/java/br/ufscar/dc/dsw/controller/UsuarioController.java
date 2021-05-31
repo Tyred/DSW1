@@ -1,6 +1,10 @@
 package br.ufscar.dc.dsw.controller;
 
+import br.ufscar.dc.dsw.dao.EmpresaDAO;
+import br.ufscar.dc.dsw.dao.ProfissionalDAO;
 import br.ufscar.dc.dsw.dao.UsuarioDAO;
+import br.ufscar.dc.dsw.domain.Empresa;
+import br.ufscar.dc.dsw.domain.Profissional;
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.util.Erro;
 
@@ -34,21 +38,20 @@ public class UsuarioController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Usuario usuario = (Usuario)
-        // request.getSession().getAttribute("usuarioLogado");
-        // Erro erros = new Erro();
+        Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
+        Erro erros = new Erro();
 
-        // if (usuario == null) {
-        // response.sendRedirect(request.getContextPath());
-        // return;
-        // } else if (!usuario.getAdmin()) {
-        // erros.add("Acesso não autorizado!");
-        // erros.add("Apenas Papel [ADMIN] tem acesso a essa página");
-        // request.setAttribute("mensagens", erros);
-        // RequestDispatcher rd = request.getRequestDispatcher("/noAuth.jsp");
-        // rd.forward(request, response);
-        // return;
-        // }
+        if (usuario == null) {
+            response.sendRedirect(request.getContextPath());
+            return;
+        } else if (!usuario.isAdmin()) {
+            erros.add("Acesso não autorizado!");
+            erros.add("Apenas usuários administradores têm acesso a essa página!");
+            request.setAttribute("mensagens", erros);
+            RequestDispatcher rd = request.getRequestDispatcher("/noAuth.jsp");
+            rd.forward(request, response);
+            return;
+        }
 
         String action = request.getPathInfo();
         if (action == null) {
@@ -82,8 +85,17 @@ public class UsuarioController extends HttpServlet {
     }
 
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Usuario> listaUsuarios = usuarioDAO.getAll();
+        ProfissionalDAO profissionalDAO = new ProfissionalDAO();
+        EmpresaDAO empresaDAO = new EmpresaDAO();
+
+        List<Usuario> listaUsuarios = usuarioDAO.getAllWithoutRole();
+        List<Profissional> listaProfissionais = profissionalDAO.getAll();
+        List<Empresa> listaEmpresas = empresaDAO.getAll();
+
         request.setAttribute("listaUsuarios", listaUsuarios);
+        request.setAttribute("listaProfissionais", listaProfissionais);
+        request.setAttribute("listaEmpresas", listaEmpresas);
+        
         RequestDispatcher dispatcher = request.getRequestDispatcher("/usuario/lista.jsp");
         dispatcher.forward(request, response);
     }
