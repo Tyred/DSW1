@@ -66,7 +66,7 @@
             <th>Email</th>
             <th>CNPJ</th>
             <th><fmt:message key="empresa.cidade" /></th>
-            <th>Ação</th>
+            <th><fmt:message key="acao" /></th>
           </tr>
 
           <c:forEach var="empresa" items="${requestScope.listaEmpresas}">
