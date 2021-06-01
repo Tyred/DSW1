@@ -53,7 +53,7 @@ public class IndexController extends HttpServlet {
                         }
                         else if (empresa != null){ 
                             request.getSession().setAttribute("empresaLogada", empresa);
-                            response.sendRedirect("empresa/"); // algo assim
+                            response.sendRedirect("minhasvagas/"); // algo assim
                         }
                         else if (profissional != null){
                             request.getSession().setAttribute("profissionalLogado", profissional);
