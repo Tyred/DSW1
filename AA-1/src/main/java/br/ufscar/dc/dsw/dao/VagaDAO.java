@@ -63,6 +63,25 @@ public class VagaDAO extends GenericDAO {
         return listaVagas;
     }
 
+    public List<Vaga> getAllOpen() {
+        List<Vaga> listaVagas = new ArrayList<>();
+        String sql = "SELECT * FROM vaga v, empresa e, usuario u WHERE v.id_empresa = e.id AND e.id_usuario = u.id AND DATE(v.data_limite) >= CURDATE()";
+        try {
+            Connection conn = this.getConnection();
+            Statement statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                listaVagas.add(setVaga(resultSet));
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listaVagas;
+    }
+
     public void delete(Vaga vaga) {
         String sql = "DELETE FROM vaga WHERE id = ?";
         try {
