@@ -57,7 +57,6 @@ public class CandidaturaController extends HttpServlet {
         if (action == null) {
             action = "";
         }
-
         try {
             switch (action) {
                 case "/cadastrar":
