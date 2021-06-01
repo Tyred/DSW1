@@ -16,10 +16,10 @@
             <caption class="title">
                 <c:choose>
                     <c:when test="${empresa != null}">
-                        <fmt:message key="usuario.atualizar" />
+                        <fmt:message key="empresa.atualizar" />
                     </c:when>
                     <c:otherwise>
-                        <fmt:message key="usuario.criar" />
+                        <fmt:message key="empresa.criar" />
                     </c:otherwise>
                 </c:choose>
             </caption>

@@ -36,11 +36,11 @@
                 </h1>
 
 
-                <h2>
+                <h1>
                     <a href="${pageContext.request.contextPath}/profissionais" class="link">
                         <fmt:message key="profissional.titulo" />
                     </a>
-                </h2>
+                </h1>
             </div>
             <div class="right">
                 <p style="margin-right: 20px;">Olá, ${sessionScope.usuarioLogado.nome}! </p>

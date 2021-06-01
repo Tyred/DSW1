@@ -148,7 +148,7 @@ public class VagaController extends HttpServlet {
 
         Empresa empresa = (Empresa) request.getSession().getAttribute("empresaLogada");
 
-        String descricao = request.getParameter("nome");
+        String descricao = request.getParameter("descricao");
         Double remuneracao = Double.parseDouble(request.getParameter("remuneracao"));
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         Date dataLimite;

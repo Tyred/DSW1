@@ -23,10 +23,26 @@
             </c:if>
             <tr>
                 <td>
+                    <label for="empresa"> <fmt:message key="usuario.nome" /> </label>
+                </td>
+                <td>
+                    <input disabled type="text" id="empresa" name="empresa" value="${empresa.usuario.nome}" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="cnpj"> <fmt:message key="empresa.cnpj" /> </label>
+                </td>
+                <td>
+                    <input disabled type="text" id="cnpj" name="cnpj" value="${empresa.CNPJ}" />
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="descricao"> <fmt:message key="vaga.descricao" /> </label>
                 </td>
                 <td>
-                    <input type="text" id="descricao" name="descricao" />
+                    <input type="text" id="descricao" name="descricao" value="${vaga.descricao}" />
                 </td>
             </tr>
             <tr>
@@ -34,7 +50,7 @@
                     <label for="remuneracao"> <fmt:message key="vaga.remuneracao" /> </label>
                 </td>
                 <td>
-                    <input type="text" id="remuneracao" name="remuneracao" />
+                    <input type="text" id="remuneracao" name="remuneracao" value="${vaga.remuneracao}" />
                 </td>
             </tr>
             <tr>
@@ -42,7 +58,7 @@
                     <label for="dataLimite"> <fmt:message key="vaga.dataLimite" /> </label>
                 </td>
                 <td>
-                    <input type="text" id="dataLimite" name="dataLimite" />
+                    <input type="text" id="dataLimite" name="dataLimite" value="${vaga.dataLimite}" />
                 </td>
             </tr>
             <tr>
