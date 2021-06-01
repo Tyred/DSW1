@@ -4,11 +4,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 import br.ufscar.dc.dsw.dao.CandidaturaDAO;
-import br.ufscar.dc.dsw.dao.ProfissionalDAO;
-import br.ufscar.dc.dsw.dao.EmpresaDAO;
-import br.ufscar.dc.dsw.dao.UsuarioDAO;
 import br.ufscar.dc.dsw.dao.VagaDAO;
-import br.ufscar.dc.dsw.domain.Empresa;
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.domain.Vaga;
 import br.ufscar.dc.dsw.domain.Candidatura;
@@ -61,8 +57,6 @@ public class CandidaturaController extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        listaVaga(request, response);
-        /*
         try {
             switch (action) {
                 case "/cadastrar":
@@ -74,27 +68,26 @@ public class CandidaturaController extends HttpServlet {
                 case "/remover":
                     remover(request, response);
                     break;
-                case "/editar":
-                    apresentaFormEdicao(request, response);
+                case "/inscrever":
+                    apresentaFormInscricao(request, response);
                     break;
                 case "/atualizar":
                     atualizar(request, response);
                     break;
-                default:
+                case "/candidaturas":
                     lista(request, response);
+                    break;
+                default:
+                    listaVagas(request, response);
                     break;
             }
         } catch (RuntimeException | IOException | ServletException e) {
             throw new ServletException(e);
         }
-        */
     }
-    
 
-    private void listaVaga(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void listaVagas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         VagaDAO vagaDAO = new VagaDAO();
-
-        Empresa empresa = (Empresa) request.getSession().getAttribute("empresaLogada");
 
         List<Vaga> listaVagas = vagaDAO.getAllOpen();
         request.setAttribute("listaVagasAbertas", listaVagas);
@@ -102,10 +95,22 @@ public class CandidaturaController extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/vaga/lista.jsp");
         dispatcher.forward(request, response);
     }
-    /*
+
+    private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        CandidaturaDAO candidaturaDAO = new CandidaturaDAO();
+
+        Profissional profissional = (Profissional) request.getSession().getAttribute("profissionalLogado");
+
+        List<Candidatura> listaCandidaturas = candidaturaDAO.getAllByProfissional(profissional.getId());
+        request.setAttribute("listaCandidaturas", listaCandidaturas);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/minhasCandidaturas/lista.jsp");
+        dispatcher.forward(request, response);
+    }
+
     private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/minhasVagas/formulario.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/minhasCandidaturas/formulario.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -113,34 +118,24 @@ public class CandidaturaController extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 
-        Empresa empresa = (Empresa) request.getSession().getAttribute("empresaLogada");
+        Profissional profissional = (Profissional) request.getSession().getAttribute("profissionalLogado");
 
-        String descricao = request.getParameter("descricao");
-        Double remuneracao = Double.parseDouble(request.getParameter("remuneracao"));
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        Date dataLimite;
-        java.util.Date utilDate = null;
+        Long idVaga = Long.parseLong(request.getParameter("idVaga"));
+        String curriculo = request.getParameter("curriculo");
+        Vaga vaga = vagaDAO.getByID(idVaga);
 
-        try {
-            utilDate = format.parse(request.getParameter("dataLimite"));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        Candidatura candidatura = new Candidatura(profissional, vaga, curriculo, "ABERTA", null, null);
 
-        dataLimite = new Date(utilDate.getTime());
-
-        Vaga vaga = new Vaga(empresa, descricao, remuneracao, dataLimite);
-        
-        vagaDAO.insert(vaga);
+        candidaturaDAO.insert(candidatura);
         response.sendRedirect("lista");
     }
-    
-    private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response)
+
+    private void apresentaFormInscricao(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Long id = Long.parseLong(request.getParameter("id"));
         Vaga vaga = vagaDAO.getByID(id);
         request.setAttribute("vaga", vaga);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/minhasVagas/formulario.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/minhasCandidaturas/formulario.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -150,12 +145,12 @@ public class CandidaturaController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         Long id = Long.parseLong(request.getParameter("id"));
 
-        Empresa empresa = (Empresa) request.getSession().getAttribute("empresaLogada");
-
-        String descricao = request.getParameter("nome");
-        Double remuneracao = Double.parseDouble(request.getParameter("remuneracao"));
+        String curriculo = request.getParameter("curriculo");
+        String status = request.getParameter("status");
+        String linkEntrevista = request.getParameter("linkEntrevista");
+        
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        Date dataLimite;
+        Date dataEntrevista;
         java.util.Date utilDate = null;
 
         try {
@@ -164,21 +159,20 @@ public class CandidaturaController extends HttpServlet {
             e.printStackTrace();
         }
 
-        dataLimite = new Date(utilDate.getTime());
+        dataEntrevista = new Date(utilDate.getTime());
 
-        Vaga vaga = new Vaga(empresa, descricao, remuneracao, dataLimite);
+        Candidatura candidatura = new Candidatura(id, curriculo, status, dataEntrevista, linkEntrevista);
 
-        vagaDAO.update(vaga);
+        candidaturaDAO.update(candidatura);
         response.sendRedirect("lista");
     }
 
     private void remover(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Long id = Long.parseLong(request.getParameter("id"));
 
-        Vaga vaga = new Vaga(id);
+        Candidatura candidatura = new Candidatura(id);
 
-        vagaDAO.delete(vaga);
+        candidaturaDAO.delete(candidatura);
         response.sendRedirect("lista");
     }
-    */    
 }

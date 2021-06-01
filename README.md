@@ -21,6 +21,9 @@ Yuri Gabriel Aragão da Silva<br />
 <h2>Professor</h2>
 Delano Medeiros Beder<br />
 
+<h2> Arquitetura: </h2>
+Modelo-Visão-Controlador<br>
+
 <h2> Tecnologias </h2>
 <li>Servlet, JSP,  JSTL & JDBC (Lado Servidor)</li><br />
 <li>Javascript & CSS (Lado Cliente)</li><br />
@@ -57,55 +60,55 @@ Esse é o caso em que a funcionalidade foi implementada em sua totalidade e todo
 (X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
 
 Divisão na implementação da funcionalidade: Igor (33%), Victoria (33%) e Yuri (33%) <br/>
-Esse é o caso em que a funcionalidade foi implementada em sua totalidade e todos o membros do grupo participaram da implementação <br/>
+
 
 <h2>R3:</h2>
 
 (X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
 
-Divisão na implementação da funcionalidade: Igor (33%), Victoria (33%) e Yuri (33%) <br/>
-Esse é o caso em que a funcionalidade foi implementada em sua totalidade e todos o membros do grupo participaram da implementação <br/>
+Divisão na implementação da funcionalidade: Igor (20%), Victoria (10%) e Yuri (70%) <br/>
+
 
 <h2>R4:</h2>
 
 (X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
 
-Divisão na implementação da funcionalidade: Igor (33%), Victoria (33%) e Yuri (33%) <br/>
-Esse é o caso em que a funcionalidade foi implementada em sua totalidade e todos o membros do grupo participaram da implementação <br/>
+Divisão na implementação da funcionalidade: Igor (30%), Victoria (15%) e Yuri (55%) <br/>
+
 
 <h2>R5:</h2>
 
-(X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
+( ) Implementado (x) Parcialmente implementado ( ) Não implementado <br/>
 
-Divisão na implementação da funcionalidade: Igor (33%), Victoria (33%) e Yuri (33%) <br/>
-Esse é o caso em que a funcionalidade foi implementada em sua totalidade e todos o membros do grupo participaram da implementação <br/>
+Divisão na implementação da funcionalidade: Igor (70%), Victoria (15%) e Yuri (15%) <br/>
+
 
 <h2>R6:</h2>
 
 (X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
 
-Divisão na implementação da funcionalidade: Igor (33%), Victoria (33%) e Yuri (33%) <br/>
-Esse é o caso em que a funcionalidade foi implementada em sua totalidade e todos o membros do grupo participaram da implementação <br/>
+Divisão na implementação da funcionalidade: Igor (60%), Victoria (10%) e Yuri (20%) <br/>
+
 
 <h2>R7:</h2>
 
-(X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
+(x) Implementado (x) Parcialmente implementado ( ) Não implementado <br/>
 
-Divisão na implementação da funcionalidade: Igor (33%), Victoria (33%) e Yuri (33%) <br/>
-Esse é o caso em que a funcionalidade foi implementada em sua totalidade e todos o membros do grupo participaram da implementação <br/>
+Divisão na implementação da funcionalidade: Igor (40%), Victoria (30%) e Yuri (30%) <br/>
+
 
 <h2>R8:</h2>
 
-(X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
+() Implementado ( ) Parcialmente implementado (x) Não implementado <br/>
 
-Divisão na implementação da funcionalidade: Igor (33%), Victoria (33%) e Yuri (33%) <br/>
-Esse é o caso em que a funcionalidade foi implementada em sua totalidade e todos o membros do grupo participaram da implementação <br/>
+Divisão na implementação da funcionalidade: Igor (), Victoria () e Yuri () <br/>
+
 
 <h2>R9:</h2>
 
 (X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
 
-Divisão na implementação da funcionalidade: Igor (33%), Victoria (33%) e Yuri (33%) <br/>
-Esse é o caso em que a funcionalidade foi implementada em sua totalidade e todos o membros do grupo participaram da implementação <br/>
+Divisão na implementação da funcionalidade: Igor (5%), Victoria (90%) e Yuri (5%) <br/>
+
 
 

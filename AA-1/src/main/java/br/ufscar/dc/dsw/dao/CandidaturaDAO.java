@@ -51,8 +51,8 @@ public class CandidaturaDAO extends GenericDAO {
 
     public List<Candidatura> getAll() {
         List<Candidatura> listaCandidaturas = new ArrayList<>();
-        String sql = "SELECT * FROM candidatura c, profissional p, usuario up, vaga v,"
-                + " empresa e, usuario ue WHERE up.id = p.id_usuario AND ue. id = e.id_usuario AND"
+        String sql = "SELECT * FROM candidatura c, profissional p, usuario u, vaga v,"
+                + " empresa e, usuario ue WHERE u.id = p.id_usuario AND ue. id = e.id_usuario AND"
                 + "v.id_empresa = e.id AND c.id_vaga = v.id AND c.id_profissional = p.id";
         try {
             Connection conn = this.getConnection();
@@ -105,8 +105,8 @@ public class CandidaturaDAO extends GenericDAO {
 
     public Candidatura getByID(Long idCandidatura) {
         Candidatura candidatura = null;
-        String sql = "SELECT * FROM candidatura c, profissional p, usuario up, vaga v,"
-                + " empresa e, usuario ue WHERE up.id = p.id_usuario AND ue. id = e.id_usuario AND"
+        String sql = "SELECT * FROM candidatura c, profissional p, usuario u, vaga v,"
+                + " empresa e, usuario ue WHERE u.id = p.id_usuario AND ue. id = e.id_usuario AND"
                 + "v.id_empresa = e.id AND c.id_vaga = v.id AND c.id_profissional = p.id AND c.id = ?";
         try {
             Connection conn = this.getConnection();
@@ -127,8 +127,8 @@ public class CandidaturaDAO extends GenericDAO {
 
     public List<Candidatura> getAllByProfissional(Long idProfissional) {
         List<Candidatura> listaCandidaturas = new ArrayList<>();
-        String sql = "SELECT * FROM candidatura c, profissional p, usuario up, vaga v,"
-                + " empresa e, usuario ue WHERE up.id = p.id_usuario AND ue. id = e.id_usuario AND"
+        String sql = "SELECT * FROM candidatura c, profissional p, usuario u, vaga v,"
+                + " empresa e, usuario ue WHERE u.id = p.id_usuario AND ue. id = e.id_usuario AND "
                 + "v.id_empresa = e.id AND c.id_vaga = v.id AND c.id_profissional = p.id AND p.id = ?";
         try {
             Connection conn = this.getConnection();
@@ -149,8 +149,8 @@ public class CandidaturaDAO extends GenericDAO {
 
     public List<Candidatura> getAllByVaga(Long idVaga) {
         List<Candidatura> listaCandidaturas = new ArrayList<>();
-        String sql = "SELECT * FROM candidatura c, profissional p, usuario up, vaga v,"
-                + " empresa e, usuario ue WHERE up.id = p.id_usuario AND ue. id = e.id_usuario AND"
+        String sql = "SELECT * FROM candidatura c, profissional p, usuario u, vaga v,"
+                + " empresa e, usuario ue WHERE u.id = p.id_usuario AND ue. id = e.id_usuario AND"
                 + "v.id_empresa = e.id AND c.id_vaga = v.id AND c.id_profissional = p.id AND v.id = ?";
         try {
             Connection conn = this.getConnection();
