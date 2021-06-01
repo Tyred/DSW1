@@ -66,14 +66,15 @@ Divisão na implementação da funcionalidade: Igor (33%), Victoria (33%) e Yuri
 
 (X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
 
-Divisão na implementação da funcionalidade: Igor (20%), Victoria (10%) e Yuri (70%) <br/>
+Divisão na implementação da funcionalidade: Igor (25%), Victoria (15%) e Yuri (60%) <br/>
 
 
 <h2>R4:</h2>
 
-(X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
+( ) Implementado (x) Parcialmente implementado ( ) Não implementado <br/>
 
-Divisão na implementação da funcionalidade: Igor (30%), Victoria (15%) e Yuri (55%) <br/>
+Divisão na implementação da funcionalidade: Igor (30%), Victoria (20%) e Yuri (50%) <br/>
+ps: falta filtrar por cidade
 
 
 <h2>R5:</h2>
@@ -81,18 +82,19 @@ Divisão na implementação da funcionalidade: Igor (30%), Victoria (15%) e Yuri
 ( ) Implementado (x) Parcialmente implementado ( ) Não implementado <br/>
 
 Divisão na implementação da funcionalidade: Igor (70%), Victoria (15%) e Yuri (15%) <br/>
+ps: falta evitar que o candidato se candidate duas vezes para a mesma vaga 
 
 
 <h2>R6:</h2>
 
 (X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
 
-Divisão na implementação da funcionalidade: Igor (60%), Victoria (10%) e Yuri (20%) <br/>
+Divisão na implementação da funcionalidade: Igor (50%), Victoria (20%) e Yuri (30%) <br/>
 
 
 <h2>R7:</h2>
 
-(x) Implementado (x) Parcialmente implementado ( ) Não implementado <br/>
+() Implementado (x) Parcialmente implementado ( ) Não implementado <br/>
 
 Divisão na implementação da funcionalidade: Igor (40%), Victoria (30%) e Yuri (30%) <br/>
 
@@ -108,7 +110,7 @@ Divisão na implementação da funcionalidade: Igor (), Victoria () e Yuri () <b
 
 (X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
 
-Divisão na implementação da funcionalidade: Igor (5%), Victoria (90%) e Yuri (5%) <br/>
+Divisão na implementação da funcionalidade: Igor (10%), Victoria (80%) e Yuri (10%) <br/>
 
 
 
