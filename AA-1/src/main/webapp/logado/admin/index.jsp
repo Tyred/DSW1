@@ -14,14 +14,17 @@
 
             <body>
                 <div class="navbar">
-
-                    <img src="https://cdn.iconscout.com/icon/free/png-256/dashboard-1739866-1481441.png" />
-                    <h1><a href="${pageContext.request.contextPath}/admin" class="link">Dashboard</a></h1>
-                    <h1> <a href="${pageContext.request.contextPath}/usuarios" class="link">Usuários</a></h1>
-                    <h1> <a href="${pageContext.request.contextPath}/empresas" class="link">Empresas</a></h1>
-                    <h2> <a href="${pageContext.request.contextPath}/profissionais" class="link">Profissionais</a></h2>
+                    <div class="left">
+                        <img src="https://cdn.iconscout.com/icon/free/png-256/dashboard-1739866-1481441.png" />
+                        <h1><a href="${pageContext.request.contextPath}/admin" class="link">Dashboard</a></h1>
+                        <h1> <a href="${pageContext.request.contextPath}/usuarios" class="link">Usuários</a></h1>
+                        <h1> <a href="${pageContext.request.contextPath}/empresas" class="link">Empresas</a></h1>
+                        <h1> <a href="${pageContext.request.contextPath}/vagas" class="link">Vagas</a></h1>
+                        <h1> <a href="${pageContext.request.contextPath}/candidaturas" class="link">Candidaturas</a></h1>
+                        <h2> <a href="${pageContext.request.contextPath}/profissionais" class="link">Profissionais</a></h2>
+                    </div>
                     <div class="right">
-                        <p style="margin-right: 20px;">Olá, ${sessionScope.usuarioLogado.nome}! ;)</p>
+                        <p style="margin-right: 20px;">Olá, ${sessionScope.usuarioLogado.nome}! </p>
                         <a href="${pageContext.request.contextPath}/logout.jsp" class="sair">Sair</a>
                     </div>
                 </div>
