@@ -9,7 +9,7 @@
                     <head>
                         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                         <title>
-                            <fmt:message key="acao.cadastrar />
+                            <fmt:message key="acao.cadastrar" />
                         </title>
                         <link rel=" icon " type="imagem/png " href="https://cdn.iconscout.com/icon/free/png-256/dashboard-1739866-1481441.png " />
                         <link href="${pageContext.request.contextPath}/index.css " rel="stylesheet " type="text/css " />
@@ -116,6 +116,7 @@
                                         <td colspan="2 " align="center ">
                                             <input type="submit " value=' <fmt:message key=" acao.salvar " />' class="button " />
                                         </td>
+
                                     </tr>
                                 </table>
                             </div>
