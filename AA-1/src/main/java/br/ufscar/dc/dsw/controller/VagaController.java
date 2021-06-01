@@ -1,5 +1,8 @@
 package br.ufscar.dc.dsw.controller;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 import br.ufscar.dc.dsw.dao.EmpresaDAO;
 import br.ufscar.dc.dsw.dao.UsuarioDAO;
 import br.ufscar.dc.dsw.dao.VagaDAO;
@@ -8,6 +11,7 @@ import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.domain.Vaga;
 import br.ufscar.dc.dsw.util.Erro;
 
+import java.text.ParseException;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -51,36 +55,49 @@ public class VagaController extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        lista(request, response);
-        /*try {
-            lista(request, response);
+        try {
+            switch (action) {
+                case "/cadastrar":
+                    apresentaFormCadastro(request, response);
+                    break;
+                case "/inserir":
+                    inserir(request, response);
+                    break;
+                case "/remover":
+                    remover(request, response);
+                    break;
+                case "/editar":
+                    apresentaFormEdicao(request, response);
+                    break;
+                case "/atualizar":
+                    atualizar(request, response);
+                    break;
+                default:
+                    lista(request, response);
+                    break;
+            }
         } catch (RuntimeException | IOException | ServletException e) {
             throw new ServletException(e);
         }
-        */
     }
+    
 
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //ProfissionalDAO profissionalDAO = new ProfissionalDAO();
         EmpresaDAO empresaDAO = new EmpresaDAO();
         VagaDAO vagaDAO = new VagaDAO();
 
         Empresa empresa = (Empresa) request.getSession().getAttribute("empresaLogada");
 
-        //List<Usuario> listaUsuarios = usuarioDAO.getAllWithoutRole();
         List<Vaga> listaVagas = vagaDAO.getAllByEmpresa(empresa.getId());
-
-        //request.setAttribute("listaUsuarios", listaUsuarios);
         request.setAttribute("listaVagas", listaVagas);
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("/minhasVagas/lista.jsp");
         dispatcher.forward(request, response);
     }
-}
-/*
+
     private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/empresa/formulario.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/minhasVagas/formulario.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -88,32 +105,34 @@ public class VagaController extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 
-        String nome = request.getParameter("nome");
-        String email = request.getParameter("email");
-        String senha = request.getParameter("senha");
-        boolean admin = Boolean.parseBoolean(request.getParameter("admin"));
+        Empresa empresa = (Empresa) request.getSession().getAttribute("empresaLogada");
 
-        Usuario usuario = new Usuario(email, nome, senha, admin);
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        usuarioDAO.insert(usuario);
-        usuario = usuarioDAO.getByEmail(email);
-
-        String cnpj = request.getParameter("cnpj");
         String descricao = request.getParameter("descricao");
-        String cidade = request.getParameter("cidade");
+        Double remuneracao = Double.parseDouble(request.getParameter("remuneracao"));
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataLimite;
+        java.util.Date utilDate = null;
 
-        Empresa empresa = new Empresa(usuario, cnpj, descricao, cidade);
+        try {
+            utilDate = format.parse(request.getParameter("dataLimite"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-        empresaDAO.insert(empresa);
+        dataLimite = new Date(utilDate.getTime());
+
+        Vaga vaga = new Vaga(empresa, descricao, remuneracao, dataLimite);
+        
+        vagaDAO.insert(vaga);
         response.sendRedirect("lista");
     }
-
+    
     private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Long id = Long.parseLong(request.getParameter("id"));
-        Empresa empresa = empresaDAO.getByID(id);
-        request.setAttribute("empresa", empresa);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/empresa/formulario.jsp");
+        Vaga vaga = vagaDAO.getByID(id);
+        request.setAttribute("vaga", vaga);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/minhasVagas/formulario.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -123,31 +142,35 @@ public class VagaController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         Long id = Long.parseLong(request.getParameter("id"));
 
-        String nome = request.getParameter("nome");
-        String email = request.getParameter("email");
-        String senha = request.getParameter("senha");
-        boolean admin = Boolean.parseBoolean(request.getParameter("admin"));
+        Empresa empresa = (Empresa) request.getSession().getAttribute("empresaLogada");
 
-        Usuario usuario = new Usuario(email, nome, senha, admin);
+        String descricao = request.getParameter("nome");
+        Double remuneracao = Double.parseDouble(request.getParameter("remuneracao"));
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataLimite;
+        java.util.Date utilDate = null;
 
-        String cnpj = request.getParameter("cnpj");
-        String descricao = request.getParameter("descricao");
-        String cidade = request.getParameter("cidade");
+        try {
+            utilDate = format.parse(request.getParameter("dataLimite"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-        Empresa empresa = new Empresa(id, usuario, cnpj, descricao, cidade);
+        dataLimite = new Date(utilDate.getTime());
 
-        empresaDAO.update(empresa);
+        Vaga vaga = new Vaga(empresa, descricao, remuneracao, dataLimite);
+
+        vagaDAO.update(vaga);
         response.sendRedirect("lista");
     }
 
     private void remover(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Long id = Long.parseLong(request.getParameter("id"));
 
-        Empresa empresa = new Empresa(id);
+        Vaga vaga = new Vaga(id);
 
-        empresaDAO.delete(empresa);
+        vagaDAO.delete(vaga);
         response.sendRedirect("lista");
     }
-
+    
 }
-*/
