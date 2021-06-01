@@ -35,7 +35,7 @@
                         </div>
                         <div class="table">
                             <h3 style="margin-top: 30px;">
-                                <fmt:message key="listavagas.descricao" />
+                                <fmt:message key="listavaga.descricao" />
                             </h3>
                         </div>
 

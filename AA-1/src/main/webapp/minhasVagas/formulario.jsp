@@ -6,36 +6,65 @@ pageEncoding="UTF-8"%>
 <html>
   <fmt:bundle basename="message">
     <head>
-      <title><fmt:message key="vagas.cadastro" /></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Cadastrar</title>
+        <link rel="icon" type="imagem/png" href="https://cdn.iconscout.com/icon/free/png-256/dashboard-1739866-1481441.png" />
+        <link href="${pageContext.request.contextPath}/index.css" rel="stylesheet" type="text/css" />
+        <title><fmt:message key="vaga.cadastro" /></title>
     </head>
 
     <body>
-      <% String contextPath = request.getContextPath().replace("/", ""); %>
-      <div align="center">
-        <c:choose>
-          <c:when test="${vaga != null}">
-            <form action="atualizar" method="post">
-              <%@include file="campos.jsp"%>
-            </form>
-            <a href="/<%= contextPath%>/minhasVagas/remover?id=${vaga.id}"
-              onclick="return confirm('<fmt:message key="link.confirmar" />')">
-              <fmt:message key="vaga.remover" />
-            </a>
-          </c:when>
-          <c:otherwise>
-            <form action="inserir" method="post">
-              <%@include file="campos.jsp"%>
-            </form>
-          </c:otherwise>
-        </c:choose>
-      </div>
-      <c:if test="${!empty requestScope.mensagens}">
+    <% String contextPath = request.getContextPath().replace("/", ""); %>
+
+        <div class="navbar">
+            <div class="left">
+                <img src="https://cdn.iconscout.com/icon/free/png-256/dashboard-1739866-1481441.png" />
+
+                <h1>
+                    <a href="${pageContext.request.contextPath}/minhasvagas" class="link">
+                        <fmt:message key="vaga.titulo" />
+                    </a>
+                </h1>
+                <h1>
+                    <a href="${pageContext.request.contextPath}/minhasvagas/cadastrar" class="link">
+                        <fmt:message key="acao.cadastrar" />
+                    </a>
+                </h1>
+            </div>
+            <div class="right">
+                <p style="margin-right: 20px;">
+                    <fmt:message key="navbar.ola" />, ${sessionScope.usuarioLogado.nome}! </p>
+                <a href="${pageContext.request.contextPath}/logout.jsp" class="sair">
+                    <fmt:message key="navbar.sair" />
+                </a>
+            </div>
+        </div>
+
+        <div align="center">
+            <c:choose>
+                <c:when test="${vaga != null}">
+                    <form action="atualizar" method="post">
+                        <%@include file="campos.jsp"%>
+                    </form>
+                    <a href="/<%= contextPath%>/minhasVagas/remover?id=${vaga.id}"
+                        onclick="return confirm('<fmt:message key="link.confirmar" />')">
+                        <fmt:message key="vaga.remover" />
+                    </a>
+                </c:when>
+                <c:otherwise>
+                    <form action="inserir" method="post">
+                        <%@include file="campos.jsp"%>
+                    </form>
+                </c:otherwise>
+            </c:choose>
+        </div>
+        <c:if test="${!empty requestScope.mensagens}">
         <ul class="erro">
-          <c:forEach items="${requestScope.mensagens}" var="mensagem">
+            <c:forEach items="${requestScope.mensagens}" var="mensagem">
             <li>${mensagem}</li>
-          </c:forEach>
+            </c:forEach>
         </ul>
-      </c:if>
+        </c:if>
     </body>
   </fmt:bundle>
 </html>
