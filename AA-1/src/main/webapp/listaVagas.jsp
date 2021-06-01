@@ -34,38 +34,38 @@
 
                         </div>
                         <div class="table">
-                            <h3 style="margin-top: 30px;">
+                            <h3>
                                 <fmt:message key="listavaga.descricao" />
                             </h3>
                             <div style="margin-top: 2rem;">
 
-                                    <h2>
-                                        <fmt:message key="vagas_abertas.lista" />
-                                    </h2>
-                                    <table border="1">
-                                        <tr>
-                                            <th>
-                                                <fmt:message key="vaga.empresa" /> </th>
-                                            <th>
-                                                <fmt:message key="vaga.descricao" /> </th>
-                                            <th>
-                                                <fmt:message key="vaga.remuneracao" /> </th>
-                                            <th>
-                                                <fmt:message key="vaga.dataLimite" /> </th>
-                                        </tr>
+                                <h3>
+                                    <fmt:message key="vagas_abertas.lista" />
+                                </h3>
+                                <table border="1">
+                                    <tr>
+                                        <th>
+                                            <fmt:message key="vaga.empresa" /> </th>
+                                        <th>
+                                            <fmt:message key="vaga.descricao" /> </th>
+                                        <th>
+                                            <fmt:message key="vaga.remuneracao" /> </th>
+                                        <th>
+                                            <fmt:message key="vaga.dataLimite" /> </th>
+                                    </tr>
 
-                                        <c:forEach var="vaga" items="${requestScope.listaVagasAbertas}">
-                                            <tr>
-                                                <td>${vaga.empresa.usuario.nome}</td>
-                                                <td>${vaga.descricao}</td>
-                                                <td>
-                                                    <fmt:formatNumber value="${vaga.remuneracao}" type="currency" currencySymbol="R$" />
-                                                </td>
-                                                <td>${vaga.dataLimite}</td>
-                                            </tr>
-                                        </c:forEach>
-                                    </table>
-                                </div>
+                                    <c:forEach var="vaga" items="${requestScope.listaVagasAbertas}">
+                                        <tr>
+                                            <td>${vaga.empresa.usuario.nome}</td>
+                                            <td>${vaga.descricao}</td>
+                                            <td>
+                                                <fmt:formatNumber value="${vaga.remuneracao}" type="currency" currencySymbol="R$" />
+                                            </td>
+                                            <td>${vaga.dataLimite}</td>
+                                        </tr>
+                                    </c:forEach>
+                                </table>
+                            </div>
                         </div>
 
 

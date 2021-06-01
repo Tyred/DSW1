@@ -65,10 +65,11 @@
                                                 <fmt:message key="usuario.email" />
                                             </th>
                                             <th>
-                                                <fmt:message key="usuario.admin" />/th>
+                                                <fmt:message key="usuario.admin" />
                                                 <th>
                                                     <fmt:message key="acao" />
                                                 </th>
+                                            </th>
                                         </tr>
 
                                         <c:forEach var="usuario" items="${requestScope.listaUsuarios}">
