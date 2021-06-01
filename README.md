@@ -53,7 +53,7 @@ senha: admin </br>
 (X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
 
 Divisão na implementação da funcionalidade: Igor (33%), Victoria (33%) e Yuri (33%) <br/>
-Esse é o caso em que a funcionalidade foi implementada em sua totalidade e todos o membros do grupo participaram da implementação <br/>
+
 
 <h2>R2:</h2>
 
