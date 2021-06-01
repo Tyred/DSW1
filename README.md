@@ -1,7 +1,7 @@
 # DSW1
 Trabalhos da Disciplina de Desenvolvimento de Software para Web 1<br /
 
-<h1>AA1: desenvolvimento de um sistema utilizando JSP, Servlet e JDBC</h1>
+<h2>AA1: desenvolvimento de um sistema utilizando JSP, Servlet e JDBC</h2>
 
 <h2> Atividades previstas pro semestre </h2>
 AA1: desenvolvimento de um sistema utilizando JSP, Servlet e JDBC <br />
@@ -30,9 +30,9 @@ Rodar tomcat na sua pasta /opt/tomcat/bin e executar ./catalina run <br />
 Dar deploy na pasta AA1 com mvn tomcat7:redeploy<br /><br />
 Server: dsw.cdxlj1ktosxz.sa-east-1.rds.amazonaws.com<br />
 User: admin<br />
-Password: Jycq6wCcDZssF2i<br />
-Pra vcs acessar pelo mysql-client, o comando é: mysql -h dsw.cdxlj1ktosxz.sa-east-1.rds.amazonaws.com -P 3306 -u admin -p<br/>
-E digita a senha <br/>
+Password: Jycq6wCcDZssF2i<br /><br/>
+Pra acessar pelo mysql-client, o comando é: <br/>mysql -h dsw.cdxlj1ktosxz.sa-east-1.rds.amazonaws.com -P 3306 -u admin -p<br/>
+E digita a senha! :D<br/>
 <h2>Usuarios criados</h2>
 <h3>Admin</h2>
 login: admin@gmail.com</br>
