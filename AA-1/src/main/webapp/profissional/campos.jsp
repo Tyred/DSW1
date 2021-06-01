@@ -18,6 +18,7 @@
                         <img src="https://cdn.iconscout.com/icon/free/png-256/dashboard-1739866-1481441.png" />
                         <h1><a href="${pageContext.request.contextPath}/admin" class="link">Dashboard</a></h1>
                         <h1> <a href="${pageContext.request.contextPath}/usuarios" class="link">Usuários</a></h1>
+                        <h1> <a href="${pageContext.request.contextPath}/empresas" class="link">Empresas</a></h1>
                         <h2> <a href="${pageContext.request.contextPath}/profissionais" class="link">Profissionais</a></h2>
                         <div class="right">
                             <p style="margin-right: 20px;">Olá, ${sessionScope.usuarioLogado.nome}! ;)</p>
@@ -108,7 +109,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2" align="center">
-                                        <input type="submit" value="Salvar" />
+                                        <input type="submit" value="Salvar" class="button" />
                                     </td>
                                 </tr>
                             </table>
