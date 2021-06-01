@@ -18,6 +18,14 @@ public class Candidatura {
         this.id = id;
     }
 
+    public Candidatura(Long id, String curriculo, String status, Date dataEntrevista, String linkEntrevista) {
+        this.id = id;
+        this.curriculo = curriculo;
+        this.status = status;
+        this.dataEntrevista = dataEntrevista;
+        this.linkEntrevista = linkEntrevista;
+    }
+
     public Candidatura(Profissional profissional, Vaga vaga, String curriculo, String status, Date dataEntrevista,
             String linkEntrevista) {
         this.profissional = profissional;
