@@ -8,7 +8,9 @@
 
                     <head>
                         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-                        <title>Usuários</title>
+                        <title>
+                            <fmt:message key="usuario.titulo" />
+                        </title>
                         <link rel="icon" type="imagem/png" href="https://cdn.iconscout.com/icon/free/png-256/dashboard-1739866-1481441.png" />
                         <link href="${pageContext.request.contextPath}/index.css" rel="stylesheet" type="text/css" />
 
@@ -18,16 +20,33 @@
                         <div class="navbar">
                             <div class="left">
                                 <img src="https://cdn.iconscout.com/icon/free/png-256/dashboard-1739866-1481441.png" />
-                                <h1><a href="${pageContext.request.contextPath}/admin" class="link">Dashboard</a></h1>
-                                <h1> <a href="${pageContext.request.contextPath}/usuarios" class="link">Usuários</a></h1>
-                                <h1> <a href="${pageContext.request.contextPath}/empresas" class="link">Empresas</a></h1>
-                                <h1> <a href="${pageContext.request.contextPath}/vagas" class="link">Vagas</a></h1>
-                                <h1> <a href="${pageContext.request.contextPath}/candidaturas" class="link">Candidaturas</a></h1>
-                                <h2> <a href="${pageContext.request.contextPath}/profissionais" class="link">Profissionais</a></h2>
+                                <h1>
+                                    <a href="${pageContext.request.contextPath}/admin" class="link">
+                                        <fmt:message key="dashboard.titulo" /> | </a>
+                                </h1>
+                                <h1>
+                                    <a href="${pageContext.request.contextPath}/usuarios" class="link">
+                                        <fmt:message key="usuario.titulo" />
+                                    </a>
+                                </h1>
+                                <h1>
+                                    <a href="${pageContext.request.contextPath}/empresas" class="link">
+                                        <fmt:message key="empresa.titulo" />
+                                    </a>
+                                </h1>
+
+
+                                <h2>
+                                    <a href="${pageContext.request.contextPath}/profissionais" class="link">
+                                        <fmt:message key="profissional.titulo" />
+                                    </a>
+                                </h2>
                             </div>
                             <div class="right">
                                 <p style="margin-right: 20px;">Olá, ${sessionScope.usuarioLogado.nome}! </p>
-                                <a href="${pageContext.request.contextPath}/logout.jsp" class="sair">Sair</a>
+                                <a href="${pageContext.request.contextPath}/logout.jsp" class="sair">
+                                    <fmt:message key="navbar.sair" />
+                                </a>
                             </div>
                         </div>
 
@@ -42,11 +61,14 @@
                                             <th>
                                                 <fmt:message key="usuario.nome" />
                                             </th>
-                                            <th>Email</th>
-                                            <th>Admin</th>
                                             <th>
-                                                <fmt:message key="acao" />
+                                                <fmt:message key="usuario.email" />
                                             </th>
+                                            <th>
+                                                <fmt:message key="usuario.admin" />/th>
+                                                <th>
+                                                    <fmt:message key="acao" />
+                                                </th>
                                         </tr>
 
                                         <c:forEach var="usuario" items="${requestScope.listaUsuarios}">
@@ -69,8 +91,12 @@
                                             <th>
                                                 <fmt:message key="usuario.nome" />
                                             </th>
-                                            <th>Email</th>
-                                            <th>CPF</th>
+                                            <th>
+                                                <fmt:message key="usuario.email" />
+                                            </th>
+                                            <th>
+                                                <fmt:message key="usuario.cpf" />
+                                            </th>
                                             <th>
                                                 <fmt:message key="profissional.genero" />
                                             </th>
@@ -104,12 +130,18 @@
                                             <th>
                                                 <fmt:message key="usuario.nome" />
                                             </th>
-                                            <th>Email</th>
-                                            <th>CNPJ</th>
+                                            <th>
+                                                <fmt:message key="usuario.email" />
+                                            </th>
+                                            <th>
+                                                <fmt:message key="empresa.cnpj" />
+                                            </th>
                                             <th>
                                                 <fmt:message key="empresa.cidade" />
                                             </th>
-                                            <th>Ação</th>
+                                            <th>
+                                                <fmt:message key="acao" />
+                                            </th>
                                         </tr>
 
                                         <c:forEach var="empresa" items="${requestScope.listaEmpresas}">
@@ -125,8 +157,9 @@
                                 </div>
 
                             </div>
-                            <a href="${pageContext.request.contextPath}/usuarios/cadastrar" class="button">Cadastrar
-                  usuario</a>
+                            <a href="${pageContext.request.contextPath}/usuarios/cadastrar" class="button">
+                                <fmt:message key="usuario.criar" />
+                            </a>
                     </body>
                 </fmt:bundle>
 
