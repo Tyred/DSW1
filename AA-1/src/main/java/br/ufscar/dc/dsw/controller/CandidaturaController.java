@@ -61,7 +61,7 @@ public class CandidaturaController extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        lista(request, response);
+        listaVaga(request, response);
         /*
         try {
             switch (action) {
@@ -91,7 +91,7 @@ public class CandidaturaController extends HttpServlet {
     }
     
 
-    private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void listaVaga(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         VagaDAO vagaDAO = new VagaDAO();
 
         Empresa empresa = (Empresa) request.getSession().getAttribute("empresaLogada");

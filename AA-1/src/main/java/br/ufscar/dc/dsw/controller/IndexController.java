@@ -1,5 +1,7 @@
 package br.ufscar.dc.dsw.controller;
 
+import java.util.List;
+
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,10 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import br.ufscar.dc.dsw.dao.UsuarioDAO;
 import br.ufscar.dc.dsw.dao.EmpresaDAO;
 import br.ufscar.dc.dsw.dao.ProfissionalDAO;
+import br.ufscar.dc.dsw.dao.VagaDAO;
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.domain.Empresa;
 import br.ufscar.dc.dsw.domain.Profissional;
+import br.ufscar.dc.dsw.domain.Vaga;
 import br.ufscar.dc.dsw.util.Erro;
+import br.ufscar.dc.dsw.controller.CandidaturaController;
 
 @WebServlet(name = "Index", urlPatterns = { "/index.jsp", "/logout.jsp" })
 public class IndexController extends HttpServlet {
@@ -73,10 +78,16 @@ public class IndexController extends HttpServlet {
         request.setAttribute("mensagens", erros);
         
         if(!erros.isExisteErros()) {
-            String URL = "/listaVagas.jsp";
-            RequestDispatcher rd = request.getRequestDispatcher(URL);
-            rd.forward(request, response);
+            //String URL = "/listaVagas.jsp";
+            //RequestDispatcher rd = request.getRequestDispatcher(URL);
+            //rd.forward(request, response);
+            VagaDAO vagaDAO = new VagaDAO();
             
+            List<Vaga> listaVagas = vagaDAO.getAllOpen();
+            request.setAttribute("listaVagasAbertas", listaVagas);
+            
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/listaVagas.jsp");
+            dispatcher.forward(request, response);
         }
         else{
             String URL = "/login.jsp";
