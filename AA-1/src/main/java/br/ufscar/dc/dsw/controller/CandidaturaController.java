@@ -3,10 +3,16 @@ package br.ufscar.dc.dsw.controller;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
+import br.ufscar.dc.dsw.dao.CandidaturaDAO;
+import br.ufscar.dc.dsw.dao.ProfissionalDAO;
+import br.ufscar.dc.dsw.dao.EmpresaDAO;
+import br.ufscar.dc.dsw.dao.UsuarioDAO;
 import br.ufscar.dc.dsw.dao.VagaDAO;
 import br.ufscar.dc.dsw.domain.Empresa;
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.domain.Vaga;
+import br.ufscar.dc.dsw.domain.Candidatura;
+import br.ufscar.dc.dsw.domain.Profissional;
 import br.ufscar.dc.dsw.util.Erro;
 
 import java.text.ParseException;
@@ -19,15 +25,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/minhasvagas/*")
-public class VagaController extends HttpServlet {
+@WebServlet(urlPatterns = "/vagas/*")
+public class CandidaturaController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     private VagaDAO vagaDAO;
+    private CandidaturaDAO candidaturaDAO;
 
     @Override
     public void init() {
         vagaDAO = new VagaDAO();
+        candidaturaDAO = new CandidaturaDAO();
     }
 
     @Override
@@ -41,10 +49,10 @@ public class VagaController extends HttpServlet {
             throws ServletException, IOException {
 
         Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
-        Empresa empresa = (Empresa) request.getSession().getAttribute("empresaLogada");
+        Profissional profissional = (Profissional) request.getSession().getAttribute("profissionalLogado");
         Erro erros = new Erro();
 
-        if (usuario == null || empresa == null) {
+        if (usuario == null || profissional == null) {
             response.sendRedirect(request.getContextPath());
             return;
         }
@@ -53,6 +61,8 @@ public class VagaController extends HttpServlet {
         if (action == null) {
             action = "";
         }
+        lista(request, response);
+        /*
         try {
             switch (action) {
                 case "/cadastrar":
@@ -77,6 +87,7 @@ public class VagaController extends HttpServlet {
         } catch (RuntimeException | IOException | ServletException e) {
             throw new ServletException(e);
         }
+        */
     }
     
 
@@ -85,18 +96,15 @@ public class VagaController extends HttpServlet {
 
         Empresa empresa = (Empresa) request.getSession().getAttribute("empresaLogada");
 
-        List<Vaga> listaVagas = vagaDAO.getAllByEmpresa(empresa.getId());
-        request.setAttribute("listaVagas", listaVagas);
+        List<Vaga> listaVagas = vagaDAO.getAllOpen();
+        request.setAttribute("listaVagasAbertas", listaVagas);
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/minhasVagas/lista.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/vaga/lista.jsp");
         dispatcher.forward(request, response);
     }
-
+    /*
     private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    
-        Empresa empresa = (Empresa) request.getSession().getAttribute("empresaLogada");
-        request.setAttribute("empresa", empresa);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/minhasVagas/formulario.jsp");
         dispatcher.forward(request, response);
     }
@@ -129,13 +137,9 @@ public class VagaController extends HttpServlet {
     
     private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Empresa empresa = (Empresa) request.getSession().getAttribute("empresaLogada");
-        request.setAttribute("empresa", empresa);
-
         Long id = Long.parseLong(request.getParameter("id"));
         Vaga vaga = vagaDAO.getByID(id);
         request.setAttribute("vaga", vaga);
-
         RequestDispatcher dispatcher = request.getRequestDispatcher("/minhasVagas/formulario.jsp");
         dispatcher.forward(request, response);
     }
@@ -148,7 +152,7 @@ public class VagaController extends HttpServlet {
 
         Empresa empresa = (Empresa) request.getSession().getAttribute("empresaLogada");
 
-        String descricao = request.getParameter("descricao");
+        String descricao = request.getParameter("nome");
         Double remuneracao = Double.parseDouble(request.getParameter("remuneracao"));
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         Date dataLimite;
@@ -162,7 +166,7 @@ public class VagaController extends HttpServlet {
 
         dataLimite = new Date(utilDate.getTime());
 
-        Vaga vaga = new Vaga(id, empresa, descricao, remuneracao, dataLimite);
+        Vaga vaga = new Vaga(empresa, descricao, remuneracao, dataLimite);
 
         vagaDAO.update(vaga);
         response.sendRedirect("lista");
@@ -176,5 +180,5 @@ public class VagaController extends HttpServlet {
         vagaDAO.delete(vaga);
         response.sendRedirect("lista");
     }
-    
+    */    
 }

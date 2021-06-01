@@ -19,7 +19,7 @@ pageEncoding="UTF-8"%>
             </form>
             <a href="/<%= contextPath%>/profissionais/remover?id=${profissional.id}"
               onclick="return confirm('<fmt:message key="link.confirmar" />')">
-              <fmt:message key="usuario.remover" />
+              <fmt:message key="profissional.remover" />
             </a>
           </c:when>
           <c:otherwise>
