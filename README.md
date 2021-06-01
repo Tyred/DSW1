@@ -1,5 +1,7 @@
 # DSW1
-Trabalhos da Disciplina de Desenvolvimento de Software para Web 1<br />
+Trabalhos da Disciplina de Desenvolvimento de Software para Web 1<br /
+
+<h1>AA1: desenvolvimento de um sistema utilizando JSP, Servlet e JDBC</h1>
 
 <h2> Atividades previstas pro semestre </h2>
 AA1: desenvolvimento de um sistema utilizando JSP, Servlet e JDBC <br />
@@ -18,4 +20,92 @@ Yuri Gabriel Aragão da Silva<br />
 
 <h2>Professor</h2>
 Delano Medeiros Beder<br />
+
+<h2> Tecnologias </h2>
+<li>Servlet, JSP,  JSTL & JDBC (Lado Servidor)</li><br />
+<li>Javascript & CSS (Lado Cliente)</li><br />
+
+<h2> Roteiro de execução </h2>
+Rodar tomcat na sua pasta /opt/tomcat/bin e executar ./catalina run <br />
+Dar deploy na pasta AA1 com mvn tomcat7:redeploy<br /><br />
+Server: dsw.cdxlj1ktosxz.sa-east-1.rds.amazonaws.com<br />
+User: admin<br />
+Password: Jycq6wCcDZssF2i<br />
+Pra vcs acessar pelo mysql-client, o comando é: mysql -h dsw.cdxlj1ktosxz.sa-east-1.rds.amazonaws.com -P 3306 -u admin -p<br/>
+E digita a senha <br/>
+<h2>Usuarios criados</h2>
+<h3>Admin</h2>
+login: admin@gmail.com</br>
+senha: admin </br>
+<h3>Empresa</h2>
+login: empresa@gmail.com</br>
+senha: admin </br>
+<h3>Profissional</h2>
+login: profissional@gmail.com</br>
+senha: admin </br>
+
+
+<h2>R1:</h2>
+
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
+
+Divisão na implementação da funcionalidade: Igor (33%), Victoria (33%) e Yuri (33%) <br/>
+Esse é o caso em que a funcionalidade foi implementada em sua totalidade e todos o membros do grupo participaram da implementação <br/>
+
+<h2>R2:</h2>
+
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
+
+Divisão na implementação da funcionalidade: Igor (33%), Victoria (33%) e Yuri (33%) <br/>
+Esse é o caso em que a funcionalidade foi implementada em sua totalidade e todos o membros do grupo participaram da implementação <br/>
+
+<h2>R3:</h2>
+
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
+
+Divisão na implementação da funcionalidade: Igor (33%), Victoria (33%) e Yuri (33%) <br/>
+Esse é o caso em que a funcionalidade foi implementada em sua totalidade e todos o membros do grupo participaram da implementação <br/>
+
+<h2>R4:</h2>
+
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
+
+Divisão na implementação da funcionalidade: Igor (33%), Victoria (33%) e Yuri (33%) <br/>
+Esse é o caso em que a funcionalidade foi implementada em sua totalidade e todos o membros do grupo participaram da implementação <br/>
+
+<h2>R5:</h2>
+
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
+
+Divisão na implementação da funcionalidade: Igor (33%), Victoria (33%) e Yuri (33%) <br/>
+Esse é o caso em que a funcionalidade foi implementada em sua totalidade e todos o membros do grupo participaram da implementação <br/>
+
+<h2>R6:</h2>
+
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
+
+Divisão na implementação da funcionalidade: Igor (33%), Victoria (33%) e Yuri (33%) <br/>
+Esse é o caso em que a funcionalidade foi implementada em sua totalidade e todos o membros do grupo participaram da implementação <br/>
+
+<h2>R7:</h2>
+
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
+
+Divisão na implementação da funcionalidade: Igor (33%), Victoria (33%) e Yuri (33%) <br/>
+Esse é o caso em que a funcionalidade foi implementada em sua totalidade e todos o membros do grupo participaram da implementação <br/>
+
+<h2>R8:</h2>
+
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
+
+Divisão na implementação da funcionalidade: Igor (33%), Victoria (33%) e Yuri (33%) <br/>
+Esse é o caso em que a funcionalidade foi implementada em sua totalidade e todos o membros do grupo participaram da implementação <br/>
+
+<h2>R9:</h2>
+
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
+
+Divisão na implementação da funcionalidade: Igor (33%), Victoria (33%) e Yuri (33%) <br/>
+Esse é o caso em que a funcionalidade foi implementada em sua totalidade e todos o membros do grupo participaram da implementação <br/>
+
 
