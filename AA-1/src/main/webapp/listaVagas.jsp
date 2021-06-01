@@ -34,14 +34,14 @@
 
                         </div>
                         <div class="table">
-                            <h3>
+                            <div class="title" style="margin-top: 20px;">
                                 <fmt:message key="listavaga.descricao" />
-                            </h3>
+                            </div>
                             <div style="margin-top: 2rem;">
 
-                                <h3>
-                                    <fmt:message key="vagas_abertas.lista" />
-                                </h3>
+                                <div class="title">
+                                    <fmt:message key="vagasAbertasLista" />
+                                </div>
                                 <table border="1">
                                     <tr>
                                         <th>
