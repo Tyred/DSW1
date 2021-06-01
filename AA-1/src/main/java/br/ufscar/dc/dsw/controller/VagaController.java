@@ -3,8 +3,6 @@ package br.ufscar.dc.dsw.controller;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
-import br.ufscar.dc.dsw.dao.EmpresaDAO;
-import br.ufscar.dc.dsw.dao.UsuarioDAO;
 import br.ufscar.dc.dsw.dao.VagaDAO;
 import br.ufscar.dc.dsw.domain.Empresa;
 import br.ufscar.dc.dsw.domain.Usuario;
@@ -83,7 +81,6 @@ public class VagaController extends HttpServlet {
     
 
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        EmpresaDAO empresaDAO = new EmpresaDAO();
         VagaDAO vagaDAO = new VagaDAO();
 
         Empresa empresa = (Empresa) request.getSession().getAttribute("empresaLogada");
@@ -97,6 +94,9 @@ public class VagaController extends HttpServlet {
 
     private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    
+        Empresa empresa = (Empresa) request.getSession().getAttribute("empresaLogada");
+        request.setAttribute("empresa", empresa);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/minhasVagas/formulario.jsp");
         dispatcher.forward(request, response);
     }
@@ -129,9 +129,13 @@ public class VagaController extends HttpServlet {
     
     private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Empresa empresa = (Empresa) request.getSession().getAttribute("empresaLogada");
+        request.setAttribute("empresa", empresa);
+
         Long id = Long.parseLong(request.getParameter("id"));
         Vaga vaga = vagaDAO.getByID(id);
         request.setAttribute("vaga", vaga);
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/minhasVagas/formulario.jsp");
         dispatcher.forward(request, response);
     }
@@ -158,7 +162,7 @@ public class VagaController extends HttpServlet {
 
         dataLimite = new Date(utilDate.getTime());
 
-        Vaga vaga = new Vaga(empresa, descricao, remuneracao, dataLimite);
+        Vaga vaga = new Vaga(id, empresa, descricao, remuneracao, dataLimite);
 
         vagaDAO.update(vaga);
         response.sendRedirect("lista");
