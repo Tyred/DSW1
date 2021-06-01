@@ -27,9 +27,18 @@ public class AdminController extends HttpServlet {
     	Erro erros = new Erro();
     	if (usuario == null) {
     		response.sendRedirect(request.getContextPath());
-    	} else{
+    	} else if (!usuario.isAdmin()) {
+            erros.add("Acesso não autorizado!");
+            erros.add("Apenas usuários administradores têm acesso a essa página!");
+            request.setAttribute("mensagens", erros);
+            RequestDispatcher rd = request.getRequestDispatcher("/noAuth.jsp");
+            rd.forward(request, response);
+            return;
+        } 
+        else{
     		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/index.jsp");
             dispatcher.forward(request, response);
+            return;
     	}
     }
 }

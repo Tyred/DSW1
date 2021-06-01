@@ -42,19 +42,21 @@ public class IndexController extends HttpServlet {
                 ProfissionalDAO p_dao = new ProfissionalDAO();
 
 				Usuario usuario = dao.getByEmail(login);
-                Empresa empresa = e_dao.getByID_Usuario(usuario.getId());
-                Profissional profissional = p_dao.getByID_Usuario(usuario.getId());
                 
                 if (usuario != null) {
+                    Empresa empresa = e_dao.getByID_Usuario(usuario.getId());
+                    Profissional profissional = p_dao.getByID_Usuario(usuario.getId());
 					if (usuario.getSenha().equals(senha)) {
 						request.getSession().setAttribute("usuarioLogado", usuario);
                         if (usuario.isAdmin()){
 						    response.sendRedirect("admin/");
                         }
                         else if (empresa != null){ 
-                            response.sendRedirect("gerenciamento_vagas/"); // algo assim
+                            request.getSession().setAttribute("empresaLogada", empresa);
+                            response.sendRedirect("empresa/"); // algo assim
                         }
                         else if (profissional != null){
+                            request.getSession().setAttribute("profissionalLogado", profissional);
                             response.sendRedirect("vagas/");
                         }
                         return;
@@ -66,10 +68,21 @@ public class IndexController extends HttpServlet {
 				}
 			}
 		}
+		
 		request.getSession().invalidate();
-		request.setAttribute("mensagens", erros);
-		String URL = "/listaVagas.jsp";
-		RequestDispatcher rd = request.getRequestDispatcher(URL);
-		rd.forward(request, response);
+        request.setAttribute("mensagens", erros);
+        
+        if(!erros.isExisteErros()) {
+            String URL = "/listaVagas.jsp";
+            RequestDispatcher rd = request.getRequestDispatcher(URL);
+            rd.forward(request, response);
+            
+        }
+        else{
+            String URL = "/login.jsp";
+            RequestDispatcher rd = request.getRequestDispatcher(URL);
+            rd.forward(request, response);
+        
+        }
 	}
 }
