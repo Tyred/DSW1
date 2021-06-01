@@ -41,7 +41,7 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2">
-                                                <input class="button" type="submit" name="bOK" value="Entrar" />
+                                                <input class="button" type="submit" name="bOK" value='<fmt:message key=" login.entrar " />' />
                                             </td>
                                         </tr>
                                     </table>

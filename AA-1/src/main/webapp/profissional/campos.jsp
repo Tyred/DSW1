@@ -114,7 +114,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <label for="email"> <fmt:message key="user.email" /> </label>
+                                            <label for="email"> <fmt:message key="usuario.email" /> </label>
                                         </td>
                                         <td>
                                             <input type="email" id="email" name="email" required value="${profissional.usuario.email}" />
@@ -138,7 +138,7 @@
                                     </tr>
                                     <tr>
                                         <td colspan="2" align="center">
-                                            <input type="submit" value="Salvar" class="button" />
+                                            <input type="submit" value='<fmt:message key=" acao.salvar " />' class="button" />
                                         </td>
                                     </tr>
                                 </table>
