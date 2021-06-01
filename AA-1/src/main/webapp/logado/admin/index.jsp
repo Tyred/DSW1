@@ -43,7 +43,7 @@
                 </h1>
             </div>
             <div class="right">
-                <p style="margin-right: 20px;">Olá, ${sessionScope.usuarioLogado.nome}! </p>
+                <p style="margin-right: 20px;"><fmt:message key ="hello"/>, Admin! </p>
                 <a href="${pageContext.request.contextPath}/logout.jsp" class="sair">
                     <fmt:message key="navbar.sair" />
                 </a>
