@@ -84,7 +84,7 @@
             </tr>
             <tr>
                 <td colspan="2" align="center">
-                    <input type="submit" value='<fmt:message key=" acao.salvar " />' class="button" />
+                    <input type="submit" value="<fmt:message key= "acao.salvar"/>" class="button" />
                 </td>
             </tr>
         </table>

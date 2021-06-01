@@ -22,15 +22,9 @@
                         <div class="navbar">
                             <div class="left">
                                 <img src="https://cdn.iconscout.com/icon/free/png-256/dashboard-1739866-1481441.png" />
-
                                 <h1>
-                                    <a href="${pageContext.request.contextPath}/vagas" class="link">
-                                        <fmt:message key="vagas_abertas.titulo" />
-                                    </a>
-                                </h1>
-                                <h1>
-                                    <a href="${pageContext.request.contextPath}/vagas/cadastrar" class="link">
-                                        <fmt:message key="acao.cadastrar" />
+                                    <a href="${pageContext.request.contextPath}/vagas/candidatura" class="link">
+                                        <fmt:message key="candidatura.candidatura" />
                                     </a>
                                 </h1>
                             </div>
@@ -75,16 +69,13 @@
                                                 <td>${vaga.dataLimite}</td>
                                                 <td>
                                                     <a href="/<%= contextPath%>/vagas/editar?id=${vaga.id}">
-                                                        <fmt:message key="acao.editar" />
+                                                        <fmt:message key="listavaga.inscrever" />
                                                     </a>
                                                 </td>
                                             </tr>
                                         </c:forEach>
                                     </table>
                                 </div>
-                                <a href="${pageContext.request.contextPath}/vagas/cadastrar" class="button">
-                                    <fmt:message key="listavagas.inscrever" />
-                                </a>
                             </div>
 
                     </body>
