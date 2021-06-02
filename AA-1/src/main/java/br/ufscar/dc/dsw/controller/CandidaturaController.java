@@ -89,7 +89,9 @@ public class CandidaturaController extends HttpServlet {
     private void listaVagas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         VagaDAO vagaDAO = new VagaDAO();
 
-        List<Vaga> listaVagas = vagaDAO.getAllOpen();
+        Profissional profissional = (Profissional) request.getSession().getAttribute("profissionalLogado");
+
+        List<Vaga> listaVagas = vagaDAO.getAllOpenAndNotApplied(profissional.getId());
         request.setAttribute("listaVagasAbertas", listaVagas);
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("/vaga/lista.jsp");
