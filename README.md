@@ -1,5 +1,5 @@
 # DSW1
-Trabalhos da Disciplina de Desenvolvimento de Software para Web 1<br /
+Trabalhos da Disciplina de Desenvolvimento de Software para Web 1<br />
 
 <h2>AA1: desenvolvimento de um sistema utilizando JSP, Servlet e JDBC</h2>
 
