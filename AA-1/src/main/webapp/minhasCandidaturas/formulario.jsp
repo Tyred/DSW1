@@ -25,11 +25,6 @@ pageEncoding="UTF-8"%>
                         <fmt:message key="candidatura.titulo" />
                     </a>
                 </h1>
-                <h1>
-                    <a href="${pageContext.request.contextPath}/vagas/cadastrar" class="link">
-                        <fmt:message key="acao.cadastrar" />
-                    </a>
-                </h1>
             </div>
             <div class="right">
                 <p style="margin-right: 20px;">

@@ -23,7 +23,7 @@
                                 <img src="https://cdn.iconscout.com/icon/free/png-256/dashboard-1739866-1481441.png" />
                                 <h1>
                                     <a href="${pageContext.request.contextPath}/vagas/candidaturas" class="link">
-                                        <fmt:message key="vagasAbertasTitulo" />
+                                        <fmt:message key="candidatura.candidatura" />
                                     </a>
                                 </h1>
                             </div>

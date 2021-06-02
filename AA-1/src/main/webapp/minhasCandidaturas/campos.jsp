@@ -15,7 +15,7 @@
 
             <tr>
                 <td>
-                    <label for="empresa"> <fmt:message key="usuario.nome" /> </label>
+                    <label for="empresa"> <fmt:message key="vaga.empresa" /> </label>
                 </td>
                 <td>
                     <input disabled type="text" id="empresa" name="empresa" value="${vaga.empresa.usuario.nome}" />
@@ -42,12 +42,16 @@
                     <label for="curriculo"> Curriculum </label>
                 </td>
                 <td>
-                    <input type="text" id="curriculo" name="curriculo" />
+                    <form method="post" action="multiPartServlet" enctype="multipart/form-data">
+                        <input type="file" name="multiPartServlet" />
+                        <!-- <input type="submit" value="Upload" /> -->
+                    </form>
+                    <!-- <input type="text" id="curriculo" name="curriculo" /> -->
                 </td>
             </tr>
             <tr>
                 <td colspan="2" align="center">
-                    <input type="submit" value='<fmt:message key=" acao.salvar " />' class="button" />
+                    <input type="submit" value="<fmt:message key= "acao.salvar"/>" class="button" />
                 </td>
             </tr>
         </table>

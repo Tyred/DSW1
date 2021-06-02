@@ -22,15 +22,9 @@
         <div class="navbar">
             <div class="left">
                 <img src="https://cdn.iconscout.com/icon/free/png-256/dashboard-1739866-1481441.png" />
-
-                <h1>
-                    <a href="${pageContext.request.contextPath}/vagas/candidaturas" class="link">
-                        <fmt:message key="candidatura.titulo" />
-                    </a>
-                </h1>
                 <h1>
                     <a href="${pageContext.request.contextPath}/vagas/" class="link">
-                        <fmt:message key="vaga.lista" />
+                        <fmt:message key="vagasAbertasTitulo" />
                     </a>
                 </h1>
             </div>
