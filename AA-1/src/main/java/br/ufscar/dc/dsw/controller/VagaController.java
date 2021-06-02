@@ -4,9 +4,11 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 import br.ufscar.dc.dsw.dao.VagaDAO;
+import br.ufscar.dc.dsw.dao.CandidaturaDAO;
 import br.ufscar.dc.dsw.domain.Empresa;
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.domain.Vaga;
+import br.ufscar.dc.dsw.domain.Candidatura;
 import br.ufscar.dc.dsw.util.Erro;
 
 import java.text.ParseException;
@@ -70,6 +72,9 @@ public class VagaController extends HttpServlet {
                 case "/atualizar":
                     atualizar(request, response);
                     break;
+                case "/candidatos":
+                    listaCandidatos(request, response);
+                    break;
                 default:
                     lista(request, response);
                     break;
@@ -89,6 +94,19 @@ public class VagaController extends HttpServlet {
         request.setAttribute("listaVagas", listaVagas);
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("/minhasVagas/lista.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void listaCandidatos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        Long id = Long.parseLong(request.getParameter("id"));
+
+        CandidaturaDAO candidaturaDAO = new CandidaturaDAO();
+
+        List<Candidatura> listaCandidatos = candidaturaDAO.getAllByVaga(id);
+        request.setAttribute("listaCandidatos", listaCandidatos);
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/minhasVagas/candidatos.jsp");
         dispatcher.forward(request, response);
     }
 

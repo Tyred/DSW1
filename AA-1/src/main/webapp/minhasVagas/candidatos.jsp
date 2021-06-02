@@ -9,7 +9,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>
-            <fmt:message key="vaga.titulopagina" />
+            <fmt:message key="candidatos.titulopagina" />
         </title>
         <link rel="icon" type="imagem/png" href="https://cdn.iconscout.com/icon/free/png-256/dashboard-1739866-1481441.png" />
         <link href="${pageContext.request.contextPath}/index.css" rel="stylesheet" type="text/css" />
@@ -48,48 +48,30 @@
                 <div style="margin-top: 2rem;">
 
                     <h2>
-                        <fmt:message key="vaga.lista" />
+                        <fmt:message key="candidatos.lista" />
                     </h2>
                     <table border="1">
                         <tr>
                             <th>
-                                <fmt:message key="vaga.descricao" /> </th>
-                            <th>
-                                <fmt:message key="vaga.remuneracao" /> </th>
-                            <th>
-                                <fmt:message key="vaga.dataLimite" /> </th>
-                            <th>
-                                <fmt:message key="acao" />
+                                <fmt:message key="usuario.nome" /> 
                             </th>
                             <th>
-                                <fmt:message key="acao" />
+                                Curriculum 
+                            </th>
+                            <th>
+                                Status 
                             </th>
                         </tr>
 
-                        <c:forEach var="vaga" items="${requestScope.listaVagas}">
+                        <c:forEach var="candidatura" items="${requestScope.listaCandidatos}">
                             <tr>
-                                <td>${vaga.descricao}</td>
-                                <td>
-                                    <fmt:formatNumber value="${vaga.remuneracao}" type="currency" currencySymbol="R$" />
-                                </td>
-                                <td>${vaga.dataLimite}</td>
-                                <td>
-                                    <a href="/<%= contextPath%>/minhasvagas/editar?id=${vaga.id}">
-                                        <fmt:message key="acao.editar" />
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="/<%= contextPath%>/minhasvagas/candidatos?id=${vaga.id}">
-                                        <fmt:message key="acao.candidatos" />
-                                    </a>
-                                </td>
+                                <td>${candidatura.profissional.usuario.nome}</td>
+                                <td>${candidatura.curriculo}</td>
+                                <td>${candidatura.status}</td>
                             </tr>
                         </c:forEach>
                     </table>
                 </div>
-                <a href="${pageContext.request.contextPath}/minhasvagas/cadastrar" class="button">
-                    <fmt:message key="vaga.criar" />
-                </a>
             </div>
 
     </body>

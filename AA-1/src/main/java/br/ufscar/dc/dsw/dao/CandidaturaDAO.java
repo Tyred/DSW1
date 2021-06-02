@@ -151,7 +151,7 @@ public class CandidaturaDAO extends GenericDAO {
         List<Candidatura> listaCandidaturas = new ArrayList<>();
         String sql = "SELECT * FROM candidatura c, profissional p, usuario u, vaga v,"
                 + " empresa e, usuario ue WHERE u.id = p.id_usuario AND ue. id = e.id_usuario AND"
-                + "v.id_empresa = e.id AND c.id_vaga = v.id AND c.id_profissional = p.id AND v.id = ?";
+                + " v.id_empresa = e.id AND c.id_vaga = v.id AND c.id_profissional = p.id AND v.id = ?";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
