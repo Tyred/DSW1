@@ -42,11 +42,11 @@
                     <label for="curriculo"> Curriculum </label>
                 </td>
                 <td>
-                    <form method="post" action="multiPartServlet" enctype="multipart/form-data">
-                        <input type="file" name="multiPartServlet" />
-                        <!-- <input type="submit" value="Upload" /> -->
-                    </form>
-                    <!-- <input type="text" id="curriculo" name="curriculo" /> -->
+                    <!-- <form method="post" action="multiPartServlet" enctype="multipart/form-data">
+                        <input type="file" name="multiPartServlet" /> 
+                        <input type="submit" value="Upload" /> 
+                    </form> -->
+                    <input type="text" id="curriculo" name="curriculo" />
                 </td>
             </tr>
             <tr>
