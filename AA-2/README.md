@@ -1,4 +1,4 @@
-# AA2: desenvolvimento de um sistema utilizando Spring MVC e JPA
+# AA2: Desenvolvimento de um sistema utilizando Spring MVC e JPA
 
 <h2> Sistema </h2>
 Sistema para oferta de vagas de estágios/empregos (A)<br /><br />
