@@ -19,8 +19,23 @@ public class AA2Application {
 	public static void main(String[] args) {
 		SpringApplication.run(AA2Application.class, args);
 	}
+    
+    @Bean
+    public CommandLineRunner demo(IUsuarioDAO usuarioDAO, BCryptPasswordEncoder encoder, IProfissionalDAO profissionalDAO) {
+		return (args) -> {
+			
+			Usuario u1 = new Usuario();
+			u1.setEmail("admin@gmail.com");
+			u1.setSenha(encoder.encode("admin"));
+			u1.setNome("Administrador");
+			u1.setPapel("ROLE_ADMIN");
+			u1.setEnabled(true);
+			usuarioDAO.save(u1);
+        };
+    }
+}
 
-	/* @Bean
+	/*@Bean
 	public CommandLineRunner demo(IUsuarioDAO usuarioDAO, BCryptPasswordEncoder encoder, IEditoraDAO editoraDAO, IProfissionalDAO profissionalDAO) {
 		return (args) -> {
 			
@@ -91,4 +106,3 @@ public class AA2Application {
 			profissionalDAO.save(l3);
 		};
 	} */
-}
