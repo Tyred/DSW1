@@ -30,8 +30,8 @@ public class Usuario extends AbstractEntity<Long> {
     @Column(nullable = false, length = 20)
     private String papel;
     
-    @Column(nullable = false)
-    private Boolean enabled;
+    @Column(nullable = false, columnDefinition = "TINYINT(1)")
+    private boolean enabled;
 
     public String getEmail() {
         return email;
@@ -72,22 +72,4 @@ public class Usuario extends AbstractEntity<Long> {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-    /*
-    public Usuario() {
-    }
-    
-    public Usuario(String email, String nome, String senha, Boolean isAdmin) {
-        this.email = email;
-        this.nome = nome;
-        this.senha = senha;
-        this.isAdmin = isAdmin;
-    }
-
-    public Usuario(Long id, String email, String nome, String senha, Boolean isAdmin) {
-        this.setId(id);
-        this.email = email;
-        this.nome = nome;
-        this.senha = senha;
-        this.isAdmin = isAdmin;
-    }*/
 }

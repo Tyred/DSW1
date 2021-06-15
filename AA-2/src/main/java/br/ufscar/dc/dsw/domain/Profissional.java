@@ -15,17 +15,17 @@ import javax.validation.constraints.Size;
 public class Profissional extends Usuario {
 
     @NotBlank
-	@Size(min = 14, max = 14)
+	@Size(min = 11, max = 14)
 	@Column(nullable = false, unique = true, length = 14)
     private String CPF;
 
     @NotBlank
 	@Size(min = 11, max = 15)
-	@Column(nullable = false, unique = true, length = 15)
+	@Column(nullable = false, length = 15)
     private String telefone;
 
-    @Size(min = 1, max = 15)
-	@Column(nullable = false, unique = true, length = 15)
+    @Size(min = 1, max = 12)
+	@Column(nullable = true, length = 12)
     private String sexo;
 
     @NotBlank
@@ -63,24 +63,4 @@ public class Profissional extends Usuario {
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-    /*
-    public Profissional() {
-    }
-
-    public Profissional(Usuario usuario, String CPF, String telefone, String sexo, Date dataNascimento) {
-        this.usuario = usuario;
-        this.CPF = CPF;
-        this.telefone = telefone;
-        this.sexo = sexo;
-        this.dataNascimento = dataNascimento;
-    }
-
-    public Profissional(Long id, Usuario usuario, String CPF, String telefone, String sexo, Date dataNascimento) {
-        this.setId(id);
-        this.usuario = usuario;
-        this.CPF = CPF;
-        this.telefone = telefone;
-        this.sexo = sexo;
-        this.dataNascimento = dataNascimento;
-    }*/
 }
