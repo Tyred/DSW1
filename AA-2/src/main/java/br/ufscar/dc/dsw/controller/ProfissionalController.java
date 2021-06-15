@@ -21,7 +21,7 @@ import br.ufscar.dc.dsw.service.spec.IProfissionalService;
 public class ProfissionalController {
 	
 	@Autowired
-	private IProfissionalService profissionalService;
+	private IProfissionalService service;
 	
 	@Autowired
 	private BCryptPasswordEncoder encoder;

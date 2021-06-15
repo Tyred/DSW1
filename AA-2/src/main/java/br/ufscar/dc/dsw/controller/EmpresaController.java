@@ -21,7 +21,7 @@ import br.ufscar.dc.dsw.service.spec.IEmpresaService;
 public class EmpresaController {
 	
 	@Autowired
-	private IEmpresaService empresaService;
+	private IEmpresaService service;
 	
 	@Autowired
 	private BCryptPasswordEncoder encoder;
