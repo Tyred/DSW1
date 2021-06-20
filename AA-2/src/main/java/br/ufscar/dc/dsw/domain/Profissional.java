@@ -9,6 +9,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Profissional")
@@ -20,7 +22,7 @@ public class Profissional extends Usuario {
     private String CPF;
 
     @NotBlank
-	@Size(min = 11, max = 15)
+	@Size(min = 11, max = 16)
 	@Column(nullable = false, length = 15)
     private String telefone;
 
@@ -30,7 +32,7 @@ public class Profissional extends Usuario {
 
     @NotBlank
     @Column(nullable = false, length = 19)
-    private Date dataNascimento;
+    private String dataNascimento;
 
     public String getCPF() {
         return CPF;
@@ -56,11 +58,11 @@ public class Profissional extends Usuario {
         this.sexo = sexo;
     }
 
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 }

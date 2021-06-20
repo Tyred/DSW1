@@ -36,7 +36,7 @@
                             <th th:text="#{profissional.CPF.label}"></th>
                             <th th:text="#{profissional.nome.label}"></th>
                             <th th:text="#{profissional.telefone.label}"></th>
-                            <th th:text="#{profissional.sexo.label}"></th>
+                            <th th:text="#{profissional.genero.label}"></th>
                             <th th:text="#{profissional.dataNascimento.label}"></th>
                             <th th:text="#{acao.label}"></th>
                         </tr>
@@ -44,12 +44,12 @@
                     <tbody>
                         <tr th:each="profissional : ${profissionais}">
                             <td th:text="${profissional.id}"></td>
-                            <th th:text="#{profissional.email}"></th>
-                            <th th:text="#{profissional.CPF}"></th>
-                            <th th:text="#{profissional.nome}"></th>
-                            <th th:text="#{profissional.telefone}"></th>
-                            <th th:text="#{profissional.sexo}"></th>
-                            <th th:text="#{profissional.dataNascimento}"></th>
+                            <th th:text="${profissional.email}"></th>
+                            <th th:text="${profissional.CPF}"></th>
+                            <th th:text="${profissional.nome}"></th>
+                            <th th:text="${profissional.telefone}"></th>
+                            <th th:text="${profissional.sexo}"></th>
+                            <th th:text="${profissional.dataNascimento}"></th>
                             <td colspan="2">
                                 <a class="btn btn-info btn-sm" th:href="@{/profissionais/editar/{id} (id=${profissional.id}) }" papel="button">
                                     <span class="oi oi-brush" th:title="#{link.editar.label}" aria-hidden="true"> </span>

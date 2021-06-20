@@ -28,7 +28,8 @@ public class ProfissionalController {
 	
 	@GetMapping("/cadastrar")
 	public String cadastrar(Profissional profissional) {
-		return "profissional/cadastro";
+        profissional.setPapel("ROLE_PRO");
+        return "profissional/cadastro";
 	}
 	
 	@GetMapping("/listar")
@@ -40,26 +41,30 @@ public class ProfissionalController {
 	@PostMapping("/salvar")
 	public String salvar(@Valid Profissional profissional, BindingResult result, RedirectAttributes attr) {
 		
-		if (result.hasErrors()) {
+    	if (result.hasErrors()) {
+            System.out.println(result);
 			return "profissional/cadastro";
 		}
-		
+
 		profissional.setSenha(encoder.encode(profissional.getSenha()));
 		service.salvar(profissional);
-		attr.addFlashAttribute("success", "Profissional inserido com sucesso.");
+        attr.addFlashAttribute("success", "Profissional inserido com sucesso.");
 		return "redirect:/profissionais/listar";
 	}
 	
 	@GetMapping("/editar/{id}")
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
-		model.addAttribute("profissional", service.buscarPorId(id));
+        model.addAttribute("profissional", service.buscarPorId(id));
 		return "profissional/cadastro";
 	}
 	
 	@PostMapping("/editar")
 	public String editar(@Valid Profissional profissional, BindingResult result, RedirectAttributes attr) {
 		
+        System.out.println(profissional.getId());
+        System.out.println(profissional.getPapel());
 		if (result.hasErrors()) {
+            System.out.println(result);
 			return "profissional/cadastro";
 		}
 
