@@ -27,8 +27,8 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label th:text="#{empresa.email.label}" for="email"></label>
-                        <input type="text" class="form-control" id="email" th:placeholder="#{empresa.email.label}" autofocus="autofocus" th:field="*{email}" th:classappend="${#fields.hasErrors('email')} ? is-invalid" />
+                        <label th:text="#{usuario.email.label}" for="email"></label>
+                        <input type="text" class="form-control" id="email" th:placeholder="#{usuario.email.label}" autofocus="autofocus" th:field="*{email}" th:classappend="${#fields.hasErrors('email')} ? is-invalid" />
 
                         <div class="invalid-feedback">
                             <span th:errors="*{email}"></span>
@@ -36,25 +36,26 @@
                     </div>
 
                     <div class="form-group col-md-6">
-                        <label th:text="#{empresa.senha.label}" for="senha"></label>
-                        <input type="text" class="form-control" id="senha" th:placeholder="#{empresa.senha.label}" autofocus="autofocus" th:field="*{senha}" th:classappend="${#fields.hasErrors('senha')} ? is-invalid" th:readonly="${empresa.id != null}" />
+                        <label th:text="#{usuario.senha.label}" for="senha"></label>
+                        <input type="text" class="form-control" id="senha" th:placeholder="#{usuario.senha.label}" autofocus="autofocus" th:field="*{senha}" th:classappend="${#fields.hasErrors('senha')} ? is-invalid" th:readonly="${empresa.id != null}" />
 
                         <div class="invalid-feedback">
                             <span th:errors="*{senha}"></span>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label th:text="#{empresa.CNPJ.label}" for="cnpj"></label>
-                        <input type="number" class="form-control" id="cnpj" th:placeholder="#{empresa.CNPJ.label}" autofocus="autofocus" th:field="*{cnpj}" th:classappend="${#fields.hasErrors('cnpj')} ? is-invalid" th:readonly="${empresa.id != null}" />
+                        <label th:text="#{empresa.CNPJ.label}" for="CNPJ"></label>
+                        <input type="text" class="form-control" id="CNPJ" th:placeholder="#{empresa.CNPJ.label}" autofocus="autofocus" th:field="*{CNPJ}" th:classappend="${#fields.hasErrors('CNPJ')} ? is-invalid" th:readonly="${empresa.id != null}" 
+                        data-mask = "00.000.000/0000-00" data-mask-reverse="true"/>
 
                         <div class="invalid-feedback">
-                            <span th:errors="*{cnpj}"></span>
+                            <span th:errors="*{CNPJ}"></span>
                         </div>
                     </div>
 
                     <div class="form-group col-md-6">
-                        <label th:text="#{empresa.nome.label}" for="nome"></label>
-                        <input type="text" class="form-control" id="nome" th:field="*{nome}" th:placeholder="#{empresa.nome.label}" autofocus="autofocus" th:classappend="${#fields.hasErrors('nome')} ? is-invalid" />
+                        <label th:text="#{usuario.nome.label}" for="nome"></label>
+                        <input type="text" class="form-control" id="nome" th:field="*{nome}" th:placeholder="#{usuario.nome.label}" autofocus="autofocus" th:classappend="${#fields.hasErrors('nome')} ? is-invalid" />
 
                         <div class="invalid-feedback">
                             <span th:errors="*{nome}"></span>
@@ -76,6 +77,16 @@
 
                         <div class="invalid-feedback">
                             <span th:errors="*{cidade}"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label th:text="#{usuario.papel.label}" for="papel"></label>
+                        <input type="text" class="form-control" id="papel" th:field="*{papel}" autofocus="autofocus" th:classappend="${#fields.hasErrors('papel')} ? is-invalid" 
+                        readonly />
+
+                        <div class="invalid-feedback">
+                            <span th:errors="*{papel}"></span>
                         </div>
                     </div>
 

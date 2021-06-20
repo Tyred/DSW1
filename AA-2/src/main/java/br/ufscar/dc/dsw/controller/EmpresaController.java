@@ -28,6 +28,7 @@ public class EmpresaController {
 	
 	@GetMapping("/cadastrar")
 	public String cadastrar(Empresa empresa) {
+        empresa.setPapel("ROLE_EMPRESA");
 		return "empresa/cadastro";
 	}
 	

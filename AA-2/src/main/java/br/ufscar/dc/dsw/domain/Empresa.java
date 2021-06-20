@@ -12,16 +12,17 @@ import javax.validation.constraints.Size;
 @Table(name = "Empresa")
 public class Empresa extends Usuario {
 
-    @NotBlank
-	@Size(min = 14, max = 14)
+    @NotBlank(message="{Blank.empresa.CNPJ}")
+	@Size(min = 18, max = 18, message="{Size.empresa.CNPJ}")
 	@Column(nullable = false, unique = true, length = 14)
     private String CNPJ;
 
-    @NotBlank
-	@Size(min = 32, max = 2048)
+    @NotBlank(message="{Blank.empresa.descricao}")
+	@Size(min = 8, max = 2048, message="{Size.empresa.descricao}")
 	@Column(nullable = false, length = 2048)
     private String descricao;
 
+    @NotBlank(message="{Blank.empresa.cidade}")
     @Size(max = 128)
 	@Column(nullable = false, length = 128)
     private String cidade;
