@@ -13,16 +13,17 @@ import javax.validation.constraints.Size;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "Usuario")
 public class Usuario extends AbstractEntity<Long> {
-    @NotBlank
-    @Size(min=6, max = 64)
+    @NotBlank(message = "{Blank.usuario.email}")
+    @Size(min=6, max = 64, message = "{Size.usuario.email}")
     @Column(nullable = false, length = 20, unique = true)
     private String email;
        
-    @NotBlank
+    @NotBlank(message = "{Blank.usuario.nome}")
     @Column(nullable = false, length = 60)
     private String nome;
 
-    @NotBlank
+    @NotBlank(message = "{Blank.usuario.senha}")
+    @Size(min=8, max = 64, message = "{Size.usuario.senha}")
     @Column(nullable = false, length = 64)
     private String senha;
 

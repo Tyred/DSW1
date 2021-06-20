@@ -16,21 +16,22 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "Profissional")
 public class Profissional extends Usuario {
 
-    @NotBlank
-	@Size(min = 11, max = 14)
+    @NotBlank(message = "{Blank.profissional.CPF}")
+	@Size(min = 14, max = 14, message = "{Size.profissional.CPF}")
 	@Column(nullable = false, unique = true, length = 14)
     private String CPF;
 
-    @NotBlank
-	@Size(min = 11, max = 16)
+    @NotBlank(message = "{Blank.profissional.telefone}")
+	@Size(min = 11, max = 16, message = "{Size.profissional.telefone}")
 	@Column(nullable = false, length = 15)
     private String telefone;
 
-    @Size(min = 1, max = 12)
-	@Column(nullable = true, length = 12)
+    @NotBlank(message = "{Blank.profissional.genero}")
+	@Size(max = 12, message = "{Size.profissional.genero}")
+    @Column(nullable = true, length = 12)
     private String sexo;
 
-    @NotBlank
+    @NotBlank(message = "{Blank.profissional.dataNascimento}")
     @Column(nullable = false, length = 19)
     private String dataNascimento;
 
