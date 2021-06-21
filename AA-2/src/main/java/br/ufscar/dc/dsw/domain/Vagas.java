@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 import javax.validation.constraints.NotBlank;
@@ -34,6 +35,17 @@ public class Vagas extends AbstractEntity<Long> {
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
+
+    @OneToMany(mappedBy = "vaga")
+	private List<Candidatura> candidaturas;
+
+    public List<Candidatura> getCandidaturas(){
+		return candidaturas;
+	}
+	
+	public void setCandidaturas(List<Candidatura> candidaturas) {
+		this.candidaturas = candidaturas;
+	}
     
     public String getDescricao() {
         return descricao;

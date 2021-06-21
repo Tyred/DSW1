@@ -23,9 +23,6 @@ public class CandidaturaController {
 	@Autowired
 	private ICandidaturaService service;
 	
-	@Autowired
-	private BCryptPasswordEncoder encoder;
-	
 	@GetMapping("/cadastrar")
 	public String cadastrar(Candidatura candidatura) {
 		return "candidatura/cadastro";

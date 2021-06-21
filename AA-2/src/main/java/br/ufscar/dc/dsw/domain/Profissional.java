@@ -1,6 +1,7 @@
 package br.ufscar.dc.dsw.domain;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,6 +36,17 @@ public class Profissional extends Usuario {
     @Column(nullable = false, length = 19)
     private String dataNascimento;
 
+    @OneToMany(mappedBy = "profissional")
+	private List<Candidatura> candidaturas;
+
+    public List<Candidatura> getCandidaturas(){
+		return candidaturas;
+	}
+	
+	public void setCandidaturas(List<Candidatura> candidaturas) {
+		this.candidaturas = candidaturas;
+	}
+    
     public String getCPF() {
         return CPF;
     }

@@ -96,7 +96,7 @@ public class VagasController {
 		model.addAttribute("vagas", service.buscarPorId(id));
 		return "vagas/cadastro";
 	}
-	
+	/*
 	@PostMapping("/editar")
 	public String editar(@Valid Vagas vagas, BindingResult result, RedirectAttributes attr) {
 		if (result.hasErrors()) {
@@ -121,5 +121,5 @@ public class VagasController {
 		attr.addFlashAttribute("success", "Vaga excluída com sucesso.");
 		return "redirect:/empresas/minhasVagas";
 	}
-    
+    */    
 }

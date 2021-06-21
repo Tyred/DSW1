@@ -44,6 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/error", "/login/**", "/js/**", "/css/**", "/image/**", "/webjars/**", "/vagas/listar", "/vagas/filtrar").permitAll()
 				.antMatchers("/vagas/**", "/empresas/minhasVagas").hasRole("EMPRESA")
                 .antMatchers("/profissionais/**", "/empresas/**").hasRole("ADMIN")
+                .antMatchers("/candidaturas/**").hasRole("PRO")
 				.anyRequest().authenticated()
 			.and()
 				.formLogin()

@@ -4,9 +4,12 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @SuppressWarnings("serial")
@@ -14,44 +17,29 @@ import javax.validation.constraints.Size;
 @Table(name = "Candidatura")
 public class Candidatura extends AbstractEntity<Long> {
 
-    @NotBlank
-	@Size(min = 14, max = 14)
-	@Column(nullable = false, unique = true, length = 5)
-    private Long id;
+    @NotNull
+	@ManyToOne
+	@JoinColumn(name = "profissional_id")
+	private Profissional profissional;
 
-    @NotBlank
-	@Size(min = 32, max = 2048)
-	@Column(nullable = false, length = 2048)
-    private String vaga;
+    @NotNull
+    @ManyToOne
+	@JoinColumn(name = "vaga_id")
+    private Vagas vaga;
 
-    @Size(max = 128)
-	@Column(nullable = false, length = 128)
+	@NotBlank
+    @Column(nullable = false, length = 128)
     private String curriculo;
 
     @Size(max = 128)
 	@Column(nullable = false, length = 128)
     private String status;
-
-    @NotBlank
-    @Column(nullable = false, length = 19)
-    private Date dataEntrevista;
-
-    @Size(max = 128)
-	@Column(nullable = false, length = 128)
-    private String linkEntrevista;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public String getVaga() {
+    
+    public Vagas getVaga() {
         return vaga;
     }
 
-    public void setVaga(String vaga) {
+    public void setVaga(Vagas vaga) {
         this.vaga = vaga;
     }
 
@@ -71,6 +59,14 @@ public class Candidatura extends AbstractEntity<Long> {
         this.status = status;
     }
 
+    public Profissional getProfissional(){
+        return profissional;
+    }
+
+    public void setProfissional(Profissional profissional){
+        this.profissional = profissional;
+    }
+    /*
     public Date getDataEntrevista() {
         return dataEntrevista;
     }
@@ -85,6 +81,6 @@ public class Candidatura extends AbstractEntity<Long> {
 
     public void setLinkEntrevista(String linkEntrevista) {
         this.linkEntrevista = linkEntrevista;
-    }
+    }*/
 
 }
