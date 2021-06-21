@@ -43,8 +43,6 @@ public class CandidaturaController {
 		if (result.hasErrors()) {
 			return "candidatura/cadastro";
 		}
-		
-		candidatura.setSenha(encoder.encode(candidatura.getSenha()));
 		service.salvar(candidatura);
 		attr.addFlashAttribute("success", "Candidatura inserido com sucesso.");
 		return "redirect:/candidaturas/listar";
@@ -63,8 +61,6 @@ public class CandidaturaController {
 			return "candidatura/cadastro";
 		}
 
-		System.out.println(candidatura.getSenha());
-		
 		service.salvar(candidatura);
 		attr.addFlashAttribute("success", "Candidatura editado com sucesso.");
 		return "redirect:/candidaturas/listar";

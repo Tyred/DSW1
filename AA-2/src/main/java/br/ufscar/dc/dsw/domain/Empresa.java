@@ -1,5 +1,6 @@
 package br.ufscar.dc.dsw.domain;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -27,6 +28,8 @@ public class Empresa extends Usuario {
 	@Column(nullable = false, length = 128)
     private String cidade;
 
+    @OneToMany(mappedBy = "empresa")
+	private List<Vagas> vagas;
     public String getCNPJ() {
         return CNPJ;
     }
@@ -50,4 +53,12 @@ public class Empresa extends Usuario {
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
+
+    public List<Vagas> getVagas() {
+		return vagas;
+	}
+
+	public void setVagas(List<Vagas> vagas) {
+		this.vagas = vagas;
+	}
 }

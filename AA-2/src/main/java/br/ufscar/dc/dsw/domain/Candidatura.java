@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Candidatura")
-public class Candidatura extends Usuario {
+public class Candidatura extends AbstractEntity<Long> {
 
     @NotBlank
 	@Size(min = 14, max = 14)

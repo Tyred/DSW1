@@ -96,10 +96,10 @@ public class VagasController {
 	}
 	
 	@GetMapping("/excluir/{id}")
-	public String excluir(@PathVariable("id") Long id, ModelMap model) {
+	public String excluir(@PathVariable("id") Long id,  RedirectAttributes attr) {
 		service.excluir(id);
-		model.addAttribute("success", "Vaga excluída com sucesso.");
-		return listar(model);
+		attr.addFlashAttribute("success", "Vaga excluída com sucesso.");
+		return "redirect:/empresas/minhasVagas";
 	}
     
 }

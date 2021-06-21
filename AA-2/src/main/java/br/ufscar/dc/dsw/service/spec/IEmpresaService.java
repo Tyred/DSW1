@@ -13,4 +13,6 @@ public interface IEmpresaService {
 	void salvar(Empresa empresa);
 
 	void excluir(Long id);	
+
+    boolean empresaTemVagas(Long id);
 }

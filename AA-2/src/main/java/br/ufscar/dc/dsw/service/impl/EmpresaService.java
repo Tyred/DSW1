@@ -34,4 +34,9 @@ public class EmpresaService implements IEmpresaService {
 	public List<Empresa> buscarTodos() {
 		return dao.findAll();
 	}
+
+    @Transactional(readOnly = true)
+	public boolean empresaTemVagas(Long id) {
+		return !dao.findById(id.longValue()).getVagas().isEmpty(); 
+	}
 }

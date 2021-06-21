@@ -92,8 +92,12 @@ public class EmpresaController {
 	
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, ModelMap model) {
-		service.excluir(id);
-		model.addAttribute("success", "Empresa excluído com sucesso.");
+		if(service.empresaTemVagas(id)){
+            model.addAttribute("fail", "Empresa não excluída. Possui vaga(s) vinculada(s).");
+		} else {
+			service.excluir(id);
+			model.addAttribute("sucess", "Empresa excluída com sucesso.");
+		}
 		return listar(model);
 	}
 }
