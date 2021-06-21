@@ -48,10 +48,6 @@ public class ProfissionalController {
         String mes = profissional.getDataNascimento().split("-")[1];
         String ano = profissional.getDataNascimento().split("-")[0];
         
-        System.out.println(dia);
-        System.out.println(mes);
-        System.out.println(ano);
-        
         String nova_data = dia + '/' + mes + '/' + ano;
 
         profissional.setDataNascimento(nova_data);
@@ -70,15 +66,20 @@ public class ProfissionalController {
 	
 	@PostMapping("/editar")
 	public String editar(@Valid Profissional profissional, BindingResult result, RedirectAttributes attr) {
-		
-        System.out.println(profissional.getId());
-        System.out.println(profissional.getPapel());
+        //System.out.println(profissional.getId());
+        //System.out.println(profissional.getPapel());
 		if (result.hasErrors()) {
             System.out.println(result);
 			return "profissional/cadastro";
 		}
+        String dia = profissional.getDataNascimento().split("-")[2];
+        String mes = profissional.getDataNascimento().split("-")[1];
+        String ano = profissional.getDataNascimento().split("-")[0];
+        
+        String nova_data = dia + '/' + mes + '/' + ano;
 
-		System.out.println(profissional.getSenha());
+		//System.out.println(profissional.getSenha());
+        profissional.setDataNascimento(nova_data);
 		
 		service.salvar(profissional);
 		attr.addFlashAttribute("success", "Profissional editado com sucesso.");

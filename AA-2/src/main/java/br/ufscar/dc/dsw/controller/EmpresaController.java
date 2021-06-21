@@ -85,7 +85,6 @@ public class EmpresaController {
 		}
 
 		System.out.println(empresa.getSenha());
-		
 		service.salvar(empresa);
 		attr.addFlashAttribute("success", "Empresa editado com sucesso.");
 		return "redirect:/empresas/listar";

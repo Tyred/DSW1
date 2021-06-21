@@ -68,7 +68,7 @@ public class VagasController {
 	
         service.salvar(vagas);
 		attr.addFlashAttribute("success", "Vaga inserida com sucesso.");
-		return "redirect:/vagas/listar";
+		return "redirect:/empresas/minhasVagas";
 	}
 	
 	@GetMapping("/editar/{id}")
@@ -79,14 +79,20 @@ public class VagasController {
 	
 	@PostMapping("/editar")
 	public String editar(@Valid Vagas vagas, BindingResult result, RedirectAttributes attr) {
-		
 		if (result.hasErrors()) {
 			return "vagas/cadastro";
 		}
+        String dia = vagas.getDataLimite().split("-")[2];
+        String mes = vagas.getDataLimite().split("-")[1];
+        String ano = vagas.getDataLimite().split("-")[0];
+        
+        String nova_data = dia + '/' + mes + '/' + ano;
+
+        vagas.setDataLimite(nova_data);
 		
 		service.salvar(vagas);
 		attr.addFlashAttribute("success", "Vaga editada com sucesso.");
-		return "redirect:/vagas/listar";
+		return "redirect:/empresas/minhasVagas";
 	}
 	
 	@GetMapping("/excluir/{id}")

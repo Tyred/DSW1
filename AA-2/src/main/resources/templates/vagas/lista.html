@@ -15,12 +15,12 @@
                         <i class="oi oi-caret-right"></i>
                         <span th:text="#{vagas.listar.label}"></span>
                     </li>
-                </ul>
+                </ul><!--
                 <a class="btn btn-primary btn-md" th:href="@{/vagas/cadastrar}" papel="button"
                 sec:authorize="hasRole('ROLE_EMPRESA')">
                     <span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
                     <span th:text="#{vaga.cadastrar.label}"></span>
-                </a>
+                </a>-->
             </div>
         </nav>
 
@@ -37,7 +37,7 @@
                             <th th:text="#{vaga.salario}"></th>
                             <th th:text="#{vaga.datalimite}"></th>
                             <th th:text="#{vaga.empresa}"></th>
-                            <th sec:authorize="hasRole('ROLE_EMPRESA')" th:text="#{acao.label}"></th>
+                            <!-- <th sec:authorize="hasRole('ROLE_EMPRESA')" th:text="#{acao.label}"></th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -47,7 +47,7 @@
                             <td th:text="|R$ ${#numbers.formatDecimal(vaga.remuneracao,2,2,'COMMA')}|"></td>
                             <td th:text="${vaga.dataLimite}"></td>
                             <td th:text="${vaga.empresa.nome}"></td>
-
+                            <!--
                             <td colspan="2" sec:authorize="hasRole('ROLE_EMPRESA')">
                                 <a class="btn btn-info btn-sm" th:href="@{/vagas/editar/{id} (id=${vaga.id}) }" papel="button">
                                     <span class="oi oi-brush" th:title="#{link.editar.label}" aria-hidden="true"> </span>
@@ -56,6 +56,7 @@
 									<span class="oi oi-circle-x" th:title="#{link.excluir.label}" aria-hidden="true"></span>
 								</button>
                             </td>
+                            -->
                         </tr>
                     </tbody>
                 </table>
