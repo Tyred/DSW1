@@ -84,6 +84,13 @@ public class AA2Application {
             v2.setDataLimite("15/07/2021");
             v2.setEmpresa(e2);
             vagasDAO.save(v2);
+
+            Vagas v3 = new Vagas();
+            v3.setDescricao("Vaga fechada");
+            v3.setRemuneracao(BigDecimal.valueOf(1500));
+            v3.setDataLimite("15/06/2021");
+            v3.setEmpresa(e1);
+            vagasDAO.save(v3);
         };
     }
 }

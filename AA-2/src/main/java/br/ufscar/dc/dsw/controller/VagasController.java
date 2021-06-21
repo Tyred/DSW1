@@ -26,7 +26,6 @@ import br.ufscar.dc.dsw.service.spec.IEmpresaService;
 @Controller
 @RequestMapping("/vagas")
 public class VagasController {
-
     
     @Autowired
 	private IVagasService service;
@@ -49,7 +48,7 @@ public class VagasController {
 	
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
-		model.addAttribute("vagas",service.buscarTodos());
+		model.addAttribute("vagas",service.buscarTodasAbertas());
 		return "vagas/lista";
 	}
 	
