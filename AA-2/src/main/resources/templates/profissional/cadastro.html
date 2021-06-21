@@ -28,7 +28,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label th:text="#{profissional.email.label}" for="email"></label>
-                        <input type="text" class="form-control" id="email" th:placeholder="#{profissional.email.label}" autofocus="autofocus" th:field="*{email}" th:classappend="${#fields.hasErrors('email')} ? is-invalid" />
+                        <input type="email" class="form-control" id="email" th:placeholder="#{profissional.email.label}" autofocus="autofocus" th:field="*{email}" th:classappend="${#fields.hasErrors('email')} ? is-invalid" />
 
                         <div class="invalid-feedback">
                             <span th:errors="*{email}"></span>
@@ -37,7 +37,7 @@
 
                     <div class="form-group col-md-6">
                         <label th:text="#{profissional.senha.label}" for="senha"></label>
-                        <input type="text" class="form-control" id="senha" th:placeholder="#{profissional.senha.label}" autofocus="autofocus" th:field="*{senha}" th:classappend="${#fields.hasErrors('senha')} ? is-invalid" th:readonly="${profissional.id != null}" />
+                        <input type="password" class="form-control" id="senha" th:placeholder="#{profissional.senha.label}" autofocus="autofocus" th:field="*{senha}" th:classappend="${#fields.hasErrors('senha')} ? is-invalid" th:readonly="${profissional.id != null}" />
 
                         <div class="invalid-feedback">
                             <span th:errors="*{senha}"></span>
@@ -88,6 +88,7 @@
                             <span th:errors="*{dataNascimento}"></span>
                         </div>
                     </div>
+                    <!-- 
                     <div class="form-group col-md-6">
                         <label th:text="#{profissional.papel.label}" for="papel"></label>
                         <input type="text" class="form-control" id="papel" th:field="*{papel}" autofocus="autofocus" th:classappend="${#fields.hasErrors('papel')} ? is-invalid" 
@@ -96,7 +97,7 @@
                         <div class="invalid-feedback">
                             <span th:errors="*{papel}"></span>
                         </div>
-                    </div>
+                    </div> -->
 
 
                     <!--
@@ -106,7 +107,7 @@
 					</div>
                     -->
                 </div>
-
+                <input type="hidden" id="papel" th:field="*{papel}" />
                 <input type="hidden" id="id" th:field="*{id}" />
                 <button type="submit" th:text="#{button.salvar.label}" class="btn btn-primary btn-sm"></button>
             </form>

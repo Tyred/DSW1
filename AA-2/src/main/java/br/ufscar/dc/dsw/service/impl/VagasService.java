@@ -34,4 +34,10 @@ public class VagasService implements IVagasService {
 	public List<Vagas> buscarTodos() {
 		return dao.findAll();
 	}
+
+    @Transactional(readOnly = true)
+	public List<Vagas> buscarTodasAbertas() {
+		return dao.getVagasAbertas();
+	}
+
 }

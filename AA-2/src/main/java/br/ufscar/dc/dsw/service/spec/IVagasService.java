@@ -13,4 +13,6 @@ public interface IVagasService {
 	void salvar(Vagas vagas);
 
 	void excluir(Long id);	
+
+    List<Vagas> buscarTodasAbertas();
 }

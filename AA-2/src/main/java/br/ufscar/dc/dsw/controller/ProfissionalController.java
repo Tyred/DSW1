@@ -40,12 +40,22 @@ public class ProfissionalController {
 	
 	@PostMapping("/salvar")
 	public String salvar(@Valid Profissional profissional, BindingResult result, RedirectAttributes attr) {
-		
-    	if (result.hasErrors()) {
+		if (result.hasErrors()) {
             System.out.println(result);
 			return "profissional/cadastro";
 		}
+        String dia = profissional.getDataNascimento().split("-")[2];
+        String mes = profissional.getDataNascimento().split("-")[1];
+        String ano = profissional.getDataNascimento().split("-")[0];
+        
+        System.out.println(dia);
+        System.out.println(mes);
+        System.out.println(ano);
+        
+        String nova_data = dia + '/' + mes + '/' + ano;
 
+        profissional.setDataNascimento(nova_data);
+    	
 		profissional.setSenha(encoder.encode(profissional.getSenha()));
 		service.salvar(profissional);
         attr.addFlashAttribute("success", "Profissional inserido com sucesso.");

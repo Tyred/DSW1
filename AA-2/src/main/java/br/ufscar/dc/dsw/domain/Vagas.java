@@ -1,32 +1,40 @@
 package br.ufscar.dc.dsw.domain;
 
 import java.sql.Date;
+import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Vagas")
-public class Vagas extends Empresa {
-    @NotBlank
-	@Size(min = 32, max = 2048)
-	@Column(nullable = false, length = 2048)
+public class Vagas extends AbstractEntity<Long> {
+    @NotBlank(message = "{Blank.vaga.descricao}")
+	@Size(min = 10, max = 256, message = "{Size.vaga.descricao}")
+	@Column(nullable = false, length = 256)
     private String descricao;
 
-    @NotBlank
-	@Size(min = 14, max = 14)
-	@Column(nullable = false, unique = true, length = 14)
-    private Double remuneracao;
+	@NotNull(message = "{Blank.vaga.remuneracao}")
+	@Column(nullable = false, columnDefinition = "DECIMAL(8,2) DEFAULT 0.0")
+    private BigDecimal remuneracao;
   
-    @NotBlank
+    @NotBlank(message = "{Blank.vaga.datalimite}")
     @Column(nullable = false, length = 19)
-    private Date dataLimite;
+    private String dataLimite;
 
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "empresa_id")
+    private Empresa empresa;
+    
     public String getDescricao() {
         return descricao;
     }
@@ -35,19 +43,27 @@ public class Vagas extends Empresa {
         this.descricao = descricao;
     }
 
-    public Double getRemuneracao() {
+    public BigDecimal getRemuneracao() {
         return remuneracao;
     }
 
-    public void setRemuneracao(Double remuneracao) {
+    public void setRemuneracao(BigDecimal remuneracao) {
         this.remuneracao = remuneracao;
     }
 
-    public Date getDataLimite() {
+    public String getDataLimite() {
         return dataLimite;
     }
 
-    public void setDataLimite(Date dataLimite) {
+    public void setDataLimite(String dataLimite) {
         this.dataLimite = dataLimite;
     }
+
+    public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
 }

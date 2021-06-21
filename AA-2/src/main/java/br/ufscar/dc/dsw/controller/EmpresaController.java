@@ -13,7 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.ufscar.dc.dsw.security.UsuarioDetails;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 import br.ufscar.dc.dsw.domain.Empresa;
+import br.ufscar.dc.dsw.domain.Usuario;
+import br.ufscar.dc.dsw.dao.IVagasDAO;
 import br.ufscar.dc.dsw.service.spec.IEmpresaService;
 
 @Controller
@@ -22,6 +27,9 @@ public class EmpresaController {
 	
 	@Autowired
 	private IEmpresaService service;
+
+    @Autowired
+	private IVagasDAO vagasDAO;
 	
 	@Autowired
 	private BCryptPasswordEncoder encoder;
@@ -37,7 +45,19 @@ public class EmpresaController {
 		model.addAttribute("empresas",service.buscarTodos());
 		return "empresa/lista";
 	}
+
+    @GetMapping("/minhasVagas")
+	public String minhasVagas(ModelMap model) {
+		model.addAttribute("vagas", vagasDAO.findByEmpresa(getEmpresa()));
+		return "empresa/minhasVagas";
+	}
 	
+    private Empresa getEmpresa(){
+        UsuarioDetails usuarioDetails = (UsuarioDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Usuario user = usuarioDetails.getUsuario();
+        return service.buscarPorId(user.getId());
+    }
+
 	@PostMapping("/salvar")
 	public String salvar(@Valid Empresa empresa, BindingResult result, RedirectAttributes attr) {
 		

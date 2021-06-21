@@ -19,6 +19,26 @@
 							</div>
 						</form>
 					</div>
+                    <div sec:authorize="isAnonymous()" style="right: 10px; position: absolute">
+						<form th:action="@{/logout}" method="post">
+							<div class="row">
+								<div class="col-sm-12 col-sm-offset-3">
+									<input type="submit" name="login" id="login"
+										class="form-control btn btn-info" th:value="#{login.username}">
+								</div>
+							</div>
+						</form>
+					</div>
+                    <div style="right: 170px; position: absolute">
+						<form th:action="@{/vagas/listar}" method="get">
+							<div class="row">
+								<div class="col-sm-12 col-sm-offset-3">
+									<input type="submit" name="vagas" id="vagas"
+										class="form-control btn btn-info" th:value="#{vaga.abertas}">
+								</div>
+							</div>
+						</form>
+					</div>
 					<div style="right: 100px; position: absolute">
 						<a th:href="@{''(lang=pt)}"><img alt=""
 							th:src="@{/image/Brasil.gif}" style="width: 30px;" /></a> <a
