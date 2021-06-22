@@ -25,6 +25,8 @@ import br.ufscar.dc.dsw.domain.Profissional;
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.dao.ICandidaturaDAO;
 import br.ufscar.dc.dsw.dao.IVagasDAO;
+import br.ufscar.dc.dsw.dao.IUsuarioDAO;
+import br.ufscar.dc.dsw.dao.IProfissionalDAO;
 import br.ufscar.dc.dsw.security.UsuarioDetails;
 import br.ufscar.dc.dsw.service.spec.IProfissionalService;
 
@@ -38,8 +40,14 @@ public class ProfissionalController {
 	@Autowired
 	private ICandidaturaDAO candidaturaDAO;
 
+    @Autowired
+	private IProfissionalDAO profissionalDAO;
+
 	@Autowired
 	private IVagasDAO vagaDAO;
+
+    @Autowired
+	private IUsuarioDAO usuarioDAO;
 	
 	@Autowired
 	private BCryptPasswordEncoder encoder;
@@ -60,15 +68,27 @@ public class ProfissionalController {
 	}
 	
 	@PostMapping("/salvar")
-	public String salvar(@Valid Profissional profissional, BindingResult result, RedirectAttributes attr) {
+	public String salvar(@Valid Profissional profissional, BindingResult result, RedirectAttributes attr, ModelMap model) {
 		if (result.hasErrors()) {
             System.out.println(result);
 			return "profissional/cadastro";
 		}
+        
+        Usuario user = usuarioDAO.getUserByEmail(profissional.getEmail());
+        if(user != null){
+            model.addAttribute("error", "error.duplicado");
+            model.addAttribute("message", "email.duplicado");
+            return "error";
+        }
+        Profissional pro = profissionalDAO.findByCPF(profissional.getCPF());
+        if(pro != null){
+            model.addAttribute("error", "error.duplicado");
+            model.addAttribute("message", "cpf.duplicado");
+            return "error";
+        }
         String dia = profissional.getDataNascimento().split("-")[2];
         String mes = profissional.getDataNascimento().split("-")[1];
         String ano = profissional.getDataNascimento().split("-")[0];
-        
         String nova_data = dia + '/' + mes + '/' + ano;
 
         profissional.setDataNascimento(nova_data);
@@ -86,11 +106,17 @@ public class ProfissionalController {
 	}
 	
 	@PostMapping("/editar")
-	public String editar(@Valid Profissional profissional, BindingResult result, RedirectAttributes attr) {
+	public String editar(@Valid Profissional profissional, BindingResult result, RedirectAttributes attr, ModelMap model) {
         if (result.hasErrors()) {
             System.out.println(result);
 			return "profissional/cadastro";
 		}
+        Usuario user = usuarioDAO.getUserByEmail(profissional.getEmail());
+        if(user != null && user.getId() != profissional.getId()){
+            model.addAttribute("error", "error.duplicado");
+            model.addAttribute("message", "email.duplicado");
+            return "error";
+        }
         String dia = profissional.getDataNascimento().split("-")[2];
         String mes = profissional.getDataNascimento().split("-")[1];
         String ano = profissional.getDataNascimento().split("-")[0];

@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 				http.authorizeRequests()
 				.antMatchers("/error", "/login/**", "/js/**", "/css/**", "/image/**", "/webjars/**", "/vagas/listar", "/vagas/filtrar").permitAll()
-				.antMatchers("/vagas/**", "/empresas/minhasVagas", "/empresas/vagaCandidaturas/**").hasRole("EMPRESA")
+				.antMatchers("/vagas/**", "/empresas/minhasVagas", "/empresas/vagaCandidaturas/**", "/empresas/status/**").hasRole("EMPRESA")
                 .antMatchers("/profissionais/minhasCandidaturas", "/profissionais/aplicarVaga/**").hasRole("PRO")
                 .antMatchers("/profissionais/**", "/empresas/**").hasRole("ADMIN")
 				.anyRequest().authenticated()
