@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <section class="layout-content" layout:fragment="corpo">
+
+        <nav class="navbar navbar-expand-md bg-light">
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active"><i class="oi oi-caret-right"></i>
+                        <span th:text="#{candidatura.cadastrar.label}"></span></li>
+                </ul>
+                <a class="btn btn-primary btn-md" th:href="@{/vagas/listar}" papel="button"> <span class="oi oi-spreadsheet" title="Listar" aria-hidden="true"></span> <span th:text="#{vagas.listar.label}"></span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="container" id="aplicarVaga">
+
+            <form th:action="@{/profissionais/aplicarVaga}" th:object="${candidatura}" method="POST" enctype="multipart/form-data">
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label th:text="#{candidatura.curriculo.label}" for="curriculo"></label>
+                        <input type="file" class="form-control" id="curriculo" th:placeholder="#{candidatura.curriculo.label}" autofocus="autofocus" th:field="*{curriculo}" />
+                    </div>
+                </div>
+                <button type="submit" th:text="#{button.salvar.label}" class="btn btn-primary btn-sm"></button>
+            </form>
+        </div>
+    </section>
+</body>
+
+</html>

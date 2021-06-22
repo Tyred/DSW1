@@ -1,6 +1,5 @@
 package br.ufscar.dc.dsw.domain;
 
-import java.sql.Date;
 import java.math.BigDecimal;
 import java.util.List;
 
