@@ -51,6 +51,13 @@
                             <span th:text="#{sidebar.link.listar}"></span>
                         </a>
                     </li>
+
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_PRO')"><span class="nav-link active" th:text="#{sidebar.titulo.candidatura}"></span></li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_PRO')">
+                        <a class="nav-link" th:href="@{/profissionais/minhasCandidaturas}"> <i class="oi oi-spreadsheet"></i>
+                            <span th:text="#{sidebar.link.listar}"></span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>

@@ -41,6 +41,7 @@
                             <th th:text="#{vaga.datalimite}"></th>
                             <th th:text="#{vaga.empresa}"></th>
                             <th th:text="#{empresa.cidade.label}"></th>
+                            <th th:text="#{acao.label}" sec:authorize="hasRole('ROLE_PRO')"></th>
                             <!-- <th sec:authorize="hasRole('ROLE_EMPRESA')" th:text="#{acao.label}"></th> -->
                         </tr>
                     </thead>
@@ -52,6 +53,10 @@
                             <td th:text="${vaga.dataLimite}"></td>
                             <td th:text="${vaga.empresa.nome}"></td>
                             <td th:text="${vaga.empresa.cidade}"></td>
+                            <td sec:authorize="hasRole('ROLE_PRO')">
+                                <a class="btn btn-info btn-sm" th:href="@{/profissionais/aplicarVaga/{id} (id=${vaga.id}) }" 
+                                th:text="Aplicar"> </a>
+                            </td>
                             <!--
                             <td colspan="2" sec:authorize="hasRole('ROLE_EMPRESA')">
                                 <a class="btn btn-info btn-sm" th:href="@{/vagas/editar/{id} (id=${vaga.id}) }" papel="button">

@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import br.ufscar.dc.dsw.dao.ICandidaturaDAO;
 import br.ufscar.dc.dsw.dao.IEmpresaDAO;
 import br.ufscar.dc.dsw.dao.IProfissionalDAO;
 import br.ufscar.dc.dsw.dao.IUsuarioDAO;
@@ -16,6 +17,7 @@ import br.ufscar.dc.dsw.domain.Profissional;
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.domain.Empresa;
 import br.ufscar.dc.dsw.domain.Vagas;
+import br.ufscar.dc.dsw.domain.Candidatura;
 
 @SpringBootApplication
 public class AA2Application {
@@ -26,9 +28,9 @@ public class AA2Application {
     
     @Bean
     public CommandLineRunner demo(IUsuarioDAO usuarioDAO, BCryptPasswordEncoder encoder, IProfissionalDAO profissionalDAO,
-        IEmpresaDAO empresaDAO, IVagasDAO vagasDAO) {
+        IEmpresaDAO empresaDAO, IVagasDAO vagasDAO, ICandidaturaDAO candidaturaDAO) {
 		return (args) -> {
-			
+			// admin
 			Usuario u1 = new Usuario();
 			u1.setEmail("admin@gmail.com");
 			u1.setSenha(encoder.encode("admin"));
@@ -37,6 +39,7 @@ public class AA2Application {
 			u1.setEnabled(true);
 			usuarioDAO.save(u1);
 
+            // Empresas
             Empresa e1 = new Empresa();
 			e1.setEmail("empresa@gmail.com");
 			e1.setSenha(encoder.encode("admin"));
@@ -59,6 +62,7 @@ public class AA2Application {
             e2.setCidade("São Paulo");
 			empresaDAO.save(e2);
 
+            // Profissionais
             Profissional p1 = new Profissional();
             p1.setEmail("profissional@gmail.com");
 			p1.setSenha(encoder.encode("admin"));
@@ -71,6 +75,19 @@ public class AA2Application {
             p1.setDataNascimento("01/02/2000");
             profissionalDAO.save(p1);
 
+            Profissional p2 = new Profissional();
+            p2.setEmail("profissional2@gmail.com");
+			p2.setSenha(encoder.encode("admin"));
+			p2.setNome("Profissional 2");
+			p2.setPapel("ROLE_PRO");
+			p2.setEnabled(true);
+            p2.setCPF("222.222.222-22");
+            p2.setTelefone("55(16)99222-2222");
+            p2.setSexo("Masculino");
+            p2.setDataNascimento("15/12/2000");
+            profissionalDAO.save(p2);
+
+            // Vagas
             Vagas v1 = new Vagas();
             v1.setDescricao("Programador Web");
             v1.setRemuneracao(BigDecimal.valueOf(3500));
@@ -91,6 +108,35 @@ public class AA2Application {
             v3.setDataLimite("15/06/2021");
             v3.setEmpresa(e1);
             vagasDAO.save(v3);
+
+            Vagas v4 = new Vagas();
+            v4.setDescricao("Vaga Aberta");
+            v4.setRemuneracao(BigDecimal.valueOf(4200));
+            v4.setDataLimite("23/06/2021");
+            v4.setEmpresa(e1);
+            vagasDAO.save(v4);
+
+            // Candidaturas
+            Candidatura c1 = new Candidatura();
+            c1.setCurriculo("Curriculo");
+            c1.setProfissional(p1);
+            c1.setVaga(v2);
+            c1.setStatus("ABERTA");
+            candidaturaDAO.save(c1);
+
+            Candidatura c2 = new Candidatura();
+            c2.setCurriculo("Curriculo");
+            c2.setProfissional(p1);
+            c2.setVaga(v4);
+            c2.setStatus("ABERTA");
+            candidaturaDAO.save(c2);
+
+            Candidatura c3 = new Candidatura();
+            c3.setCurriculo("Curriculo");
+            c3.setProfissional(p2);
+            c3.setVaga(v1);
+            c3.setStatus("ABERTA");
+            candidaturaDAO.save(c3);
         };
     }
 }

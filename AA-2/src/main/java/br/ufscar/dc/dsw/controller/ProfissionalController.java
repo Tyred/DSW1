@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import br.ufscar.dc.dsw.domain.Profissional;
+import br.ufscar.dc.dsw.domain.Usuario;
+import br.ufscar.dc.dsw.dao.ICandidaturaDAO;
+import br.ufscar.dc.dsw.security.UsuarioDetails;
 import br.ufscar.dc.dsw.service.spec.IProfissionalService;
 
 @Controller
@@ -22,6 +26,10 @@ public class ProfissionalController {
 	
 	@Autowired
 	private IProfissionalService service;
+	
+
+	@Autowired
+	private ICandidaturaDAO candidaturaDAO;
 	
 	@Autowired
 	private BCryptPasswordEncoder encoder;
@@ -92,4 +100,16 @@ public class ProfissionalController {
 		model.addAttribute("success", "Profissional excluído com sucesso.");
 		return listar(model);
 	}
+
+    @GetMapping("/minhasCandidaturas")
+	public String minhasVagas(ModelMap model) {
+		model.addAttribute("candidaturas", candidaturaDAO.findByProfissional(getProfissional()));
+		return "profissional/minhasCandidaturas";
+	}
+	
+    private Profissional getProfissional(){
+        UsuarioDetails usuarioDetails = (UsuarioDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Usuario user = usuarioDetails.getUsuario();
+        return service.buscarPorId(user.getId());
+    }
 }
