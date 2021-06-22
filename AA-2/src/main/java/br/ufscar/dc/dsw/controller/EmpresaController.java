@@ -19,6 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import br.ufscar.dc.dsw.domain.Empresa;
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.dao.IVagasDAO;
+import br.ufscar.dc.dsw.dao.ICandidaturaDAO;
 import br.ufscar.dc.dsw.service.spec.IEmpresaService;
 
 @Controller
@@ -31,6 +32,10 @@ public class EmpresaController {
     @Autowired
 	private IVagasDAO vagasDAO;
 	
+
+    @Autowired
+	private ICandidaturaDAO candidaturaDAO;
+
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 	
@@ -99,5 +104,11 @@ public class EmpresaController {
 			model.addAttribute("sucess", "Empresa excluída com sucesso.");
 		}
 		return listar(model);
+	}
+
+    @GetMapping("/vagaCandidaturas/{id}")
+	public String vagaCandidaturas(@PathVariable("id") Long id, ModelMap model) {
+		model.addAttribute("candidaturas", candidaturaDAO.findByVaga(vagasDAO.findById(id.longValue())));
+		return "empresa/vagaCandidaturas";
 	}
 }

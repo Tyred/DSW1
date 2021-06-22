@@ -55,7 +55,7 @@
                             <td th:text="${vaga.empresa.cidade}"></td>
                             <td sec:authorize="hasRole('ROLE_PRO')">
                                 <a class="btn btn-info btn-sm" th:href="@{/profissionais/aplicarVaga/{id} (id=${vaga.id}) }" 
-                                th:text="Aplicar"> </a>
+                                th:text="#{vaga.aplicar}"> </a>
                             </td>
                             <!--
                             <td colspan="2" sec:authorize="hasRole('ROLE_EMPRESA')">

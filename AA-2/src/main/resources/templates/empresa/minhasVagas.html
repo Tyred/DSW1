@@ -38,7 +38,7 @@
                             <th th:text="#{vaga.datalimite}"></th>
                             <th th:text="#{vaga.empresa}"></th>
                             <th th:text="#{empresa.cidade.label}"></th>
-                            <!-- <th sec:authorize="hasRole('ROLE_EMPRESA')" th:text="#{acao.label}"></th> -->
+                            <th sec:authorize="hasRole('ROLE_EMPRESA')" th:text="#{acao.label}"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,15 +49,10 @@
                             <td th:text="${vaga.dataLimite}"></td>
                             <td th:text="${vaga.empresa.nome}"></td>
                             <td th:text="${vaga.empresa.cidade}"></td>
-                            <!--
-                            <td colspan="2" sec:authorize="hasRole('ROLE_EMPRESA')">
-                                <a class="btn btn-info btn-sm" th:href="@{/vagas/editar/{id} (id=${vaga.id}) }" papel="button">
-                                    <span class="oi oi-brush" th:title="#{link.editar.label}" aria-hidden="true"> </span>
-                                </a>
-                                <button th:id="${'btn_vagas/excluir/' + vaga.id}" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">
-									<span class="oi oi-circle-x" th:title="#{link.excluir.label}" aria-hidden="true"></span>
-								</button>
-                            </td> -->
+                            <td sec:authorize="hasRole('ROLE_EMPRESA')">
+                                <a class="btn btn-info btn-sm" th:href="@{/empresas/vagaCandidaturas/{id} (id=${vaga.id}) }" 
+                                th:text="#{vaga.candidatos}"> </a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
