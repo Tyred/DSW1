@@ -110,7 +110,7 @@ public class ProfissionalController {
             attr.addFlashAttribute("fail", "Profissional não excluído. Possui candidatura(s) vinculada(s).");
             return "redirect:/profissionais/listar";
         } else {
-			attr.addFlashAttribute("sucess", "Profissional excluído com sucesso.");
+			attr.addFlashAttribute("success", "Profissional excluído com sucesso.");
             service.excluir(id);
             return "redirect:/profissionais/listar";
         }

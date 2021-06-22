@@ -101,7 +101,7 @@ public class EmpresaController {
             model.addAttribute("fail", "Empresa não excluída. Possui vaga(s) vinculada(s).");
 		} else {
 			service.excluir(id);
-			model.addAttribute("sucess", "Empresa excluída com sucesso.");
+			model.addAttribute("success", "Empresa excluída com sucesso.");
 		}
 		return listar(model);
 	}
