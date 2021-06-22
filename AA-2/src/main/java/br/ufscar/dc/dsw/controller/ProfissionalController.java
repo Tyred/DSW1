@@ -82,7 +82,7 @@ public class ProfissionalController {
 	@GetMapping("/editar/{id}")
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
         model.addAttribute("profissional", service.buscarPorId(id));
-		return "profissional/cadastro";
+	    return "profissional/cadastro";
 	}
 	
 	@PostMapping("/editar")
@@ -105,10 +105,15 @@ public class ProfissionalController {
 	}
 	
 	@GetMapping("/excluir/{id}")
-	public String excluir(@PathVariable("id") Long id, ModelMap model) {
-		service.excluir(id);
-		model.addAttribute("success", "Profissional excluído com sucesso.");
-		return listar(model);
+	public String excluir(@PathVariable("id") Long id, ModelMap model, RedirectAttributes attr) {
+		if(service.profissionalTemCandidaturas(id)){
+            attr.addFlashAttribute("fail", "Profissional não excluído. Possui candidatura(s) vinculada(s).");
+            return "redirect:/profissionais/listar";
+        } else {
+			attr.addFlashAttribute("sucess", "Profissional excluído com sucesso.");
+            service.excluir(id);
+            return "redirect:/profissionais/listar";
+        }
 	}
 
     @GetMapping("/minhasCandidaturas")
@@ -130,15 +135,17 @@ public class ProfissionalController {
 	}
 
 	@PostMapping("/aplicarVaga")
-	public String aplicar(@RequestParam("curriculo") MultipartFile file, @Valid Candidatura candidatura, BindingResult result, RedirectAttributes attr) throws IOException {
+	public String aplicar(@RequestParam("curriculo") MultipartFile file, @Valid Candidatura candidatura, BindingResult result, RedirectAttributes attr, ModelMap model) throws IOException {
 		
         if (candidaturaDAO.findByProfissionalAndVaga(candidatura.getProfissional(), candidatura.getVaga()) != null){
-            attr.addFlashAttribute("fail", "Você já aplicou para essa vaga.");
-		    return "redirect:/vagas/listar";
+            model.addAttribute("error", "error.duplicado");
+            model.addAttribute("message", "candidatura.duplicada");
+            return "error";
         }
         if (file.isEmpty()){
-            attr.addFlashAttribute("fail", "Campo Currículo é obrigatório.");    
-            return "redirect:/vagas/listar";
+            model.addAttribute("error", "error.arquivo");
+            model.addAttribute("message", "arquivo.vazio");
+            return "error";
         }
 
 		String fileName = file.getOriginalFilename();

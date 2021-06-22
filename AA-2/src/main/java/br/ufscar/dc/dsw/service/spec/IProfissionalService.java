@@ -13,4 +13,6 @@ public interface IProfissionalService {
 	void salvar(Profissional profissional);
 
 	void excluir(Long id);	
+
+    public boolean profissionalTemCandidaturas(Long id);
 }

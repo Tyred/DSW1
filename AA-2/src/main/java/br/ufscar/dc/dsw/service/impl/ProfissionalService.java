@@ -34,4 +34,9 @@ public class ProfissionalService implements IProfissionalService {
 	public List<Profissional> buscarTodos() {
 		return dao.findAll();
 	}
+
+    @Transactional(readOnly = true)
+	public boolean profissionalTemCandidaturas(Long id) {
+		return !dao.findById(id.longValue()).getCandidaturas().isEmpty(); 
+	}
 }

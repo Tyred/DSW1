@@ -118,25 +118,32 @@ public class AA2Application {
 
             // Candidaturas
             Candidatura c1 = new Candidatura();
-            c1.setCurriculo("Curriculo");
+            c1.setCurriculo("Curriculo.pdf");
             c1.setProfissional(p1);
             c1.setVaga(v2);
             c1.setStatus("ABERTO");
             candidaturaDAO.save(c1);
 
             Candidatura c2 = new Candidatura();
-            c2.setCurriculo("Curriculo");
+            c2.setCurriculo("Curriculo.pdf");
             c2.setProfissional(p1);
             c2.setVaga(v4);
             c2.setStatus("ABERTO");
             candidaturaDAO.save(c2);
 
             Candidatura c3 = new Candidatura();
-            c3.setCurriculo("Curriculo");
+            c3.setCurriculo("Curriculo.pdf");
             c3.setProfissional(p2);
             c3.setVaga(v1);
             c3.setStatus("ABERTO");
             candidaturaDAO.save(c3);
+        
+            Candidatura c4 = new Candidatura();
+            c4.setCurriculo("Curriculo.pdf");
+            c4.setProfissional(p2);
+            c4.setVaga(v2);
+            c4.setStatus("ABERTO");
+            candidaturaDAO.save(c4);
         };
     }
 }
