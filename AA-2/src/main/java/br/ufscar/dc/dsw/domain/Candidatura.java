@@ -9,10 +9,13 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.persistence.UniqueConstraint;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "Candidatura")
+@Table(name = "Candidatura", uniqueConstraints = {@UniqueConstraint(columnNames = {"profissional_id", "vaga_id"})}
+)
+
 public class Candidatura extends AbstractEntity<Long> {
 
     @NotNull

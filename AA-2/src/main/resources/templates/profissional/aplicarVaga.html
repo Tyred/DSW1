@@ -29,6 +29,9 @@
                         <input type="file" class="form-control" id="curriculo" th:placeholder="#{candidatura.curriculo.label}" autofocus="autofocus" th:field="*{curriculo}" />
                     </div>
                 </div>
+
+                <input type="hidden" th:field="*{profissional}" id="profissional"/>
+                <input type="hidden" th:field="*{vaga}" id="vaga"/>
                 <button type="submit" th:text="#{button.salvar.label}" class="btn btn-primary btn-sm"></button>
             </form>
         </div>

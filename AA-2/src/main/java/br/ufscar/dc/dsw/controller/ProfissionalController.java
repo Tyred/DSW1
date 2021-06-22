@@ -118,26 +118,35 @@ public class ProfissionalController {
 	}
 
 	@GetMapping("/aplicarVaga/{id}")
-	public String preAplicar(@PathVariable("id") Long id, ModelMap model) {
-		Candidatura candidatura = new Candidatura();
-		candidatura.setProfissional(getProfissional());
-		candidatura.setVaga(vagaDAO.findById(id.longValue()));
+	public String preAplicar(@PathVariable("id") Long id, ModelMap model, RedirectAttributes attr) {
+        
+        Candidatura candidatura = new Candidatura();
 		
+        candidatura.setProfissional(getProfissional());
+		candidatura.setVaga(vagaDAO.findById(id.longValue()));
+
 		model.addAttribute("candidatura", candidatura);
 		return "profissional/aplicarVaga";
 	}
 
 	@PostMapping("/aplicarVaga")
 	public String aplicar(@RequestParam("curriculo") MultipartFile file, @Valid Candidatura candidatura, BindingResult result, RedirectAttributes attr) throws IOException {
-		if (result.hasErrors()) {
-            System.out.println(result);
-			return "profissional/aplicarVaga";
-		}
+		
+        if (candidaturaDAO.findByProfissionalAndVaga(candidatura.getProfissional(), candidatura.getVaga()) != null){
+            attr.addFlashAttribute("fail", "Você já aplicou para essa vaga.");
+		    return "redirect:/vagas/listar";
+        }
+        if (file.isEmpty()){
+            attr.addFlashAttribute("fail", "Campo Currículo é obrigatório.");    
+            return "redirect:/vagas/listar";
+        }
 
 		String fileName = file.getOriginalFilename();
 		
 		String uploadPath = context.getRealPath("") + File.separator + "upload";
 		File uploadDir = new File(uploadPath);
+
+        System.out.println(uploadPath);
 		
 		if (!uploadDir.exists()) {
 			uploadDir.mkdir();
@@ -146,11 +155,11 @@ public class ProfissionalController {
 		file.transferTo(new File(uploadDir, fileName));
 
 		candidatura.setStatus("ABERTO");
-		candidatura.setCurriculo("fileName");
+		candidatura.setCurriculo(fileName);
 		candidaturaDAO.save(candidatura);
 
 		attr.addFlashAttribute("success", "Aplicação realizada com sucesso.");
-		return "redirect:/minhasCandidaturas";
+		return "redirect:/profissionais/minhasCandidaturas";
 	}
 	
     private Profissional getProfissional(){
