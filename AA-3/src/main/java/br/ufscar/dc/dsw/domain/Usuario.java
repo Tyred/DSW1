@@ -8,7 +8,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @SuppressWarnings("serial")
+@JsonIgnoreProperties(value = {"senha"})
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "Usuario")

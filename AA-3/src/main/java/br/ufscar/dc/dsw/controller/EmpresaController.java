@@ -25,7 +25,6 @@ import br.ufscar.dc.dsw.dao.ICandidaturaDAO;
 import br.ufscar.dc.dsw.dao.IEmpresaDAO;
 import br.ufscar.dc.dsw.dao.IUsuarioDAO;
 import br.ufscar.dc.dsw.service.spec.IEmpresaService;
-import groovyjarjarpicocli.CommandLine.Model;
 
 @Controller
 @RequestMapping("/empresas")

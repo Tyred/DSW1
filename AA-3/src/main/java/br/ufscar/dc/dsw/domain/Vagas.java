@@ -13,7 +13,10 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @SuppressWarnings("serial")
+@JsonIgnoreProperties(value = {"empresa", "profissional", "candidaturas"})
 @Entity
 @Table(name = "Vagas")
 public class Vagas extends AbstractEntity<Long> {

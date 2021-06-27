@@ -40,19 +40,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-				http.authorizeRequests()
-				.antMatchers("/error", "/login/**", "/js/**", "/css/**", "/image/**", "/webjars/**", "/vagas/listar", "/vagas/filtrar").permitAll()
-				.antMatchers("/vagas/**", "/empresas/minhasVagas", "/empresas/vagaCandidaturas/**", "/empresas/status/**").hasRole("EMPRESA")
-                .antMatchers("/profissionais/minhasCandidaturas", "/profissionais/aplicarVaga/**").hasRole("PRO")
-                .antMatchers("/profissionais/**", "/empresas/**").hasRole("ADMIN")
-				.anyRequest().authenticated()
-			.and()
-				.formLogin()
-				.loginPage("/login")
+		http.csrf().disable().authorizeRequests().antMatchers("/profissionais", "/empresas", "/vagas").permitAll()
+				.antMatchers("/profissionais/{\\d+}", "/empresas/{\\d+}").permitAll().antMatchers("/vagas/{\\d+}")
+				.permitAll().antMatchers("/empresas/cidades/{\\w+}").permitAll().antMatchers("/vagas/empresas/{\\d+}")
 				.permitAll()
-			.and()
-				.logout()
-				.logoutSuccessUrl("/")
+				.antMatchers("/error", "/login/**", "/js/**", "/css/**", "/image/**", "/webjars/**", "/vagas/listar",
+						"/vagas/filtrar")
+				.permitAll()
+				.antMatchers("/vagas/**", "/empresas/minhasVagas", "/empresas/vagaCandidaturas/**",
+						"/empresas/status/**")
+				.hasRole("EMPRESA").antMatchers("/profissionais/minhasCandidaturas", "/profissionais/aplicarVaga/**")
+				.hasRole("PRO").antMatchers("/profissionais/**", "/empresas/**").hasRole("ADMIN").anyRequest()
+				.authenticated().and().formLogin().loginPage("/login").permitAll().and().logout().logoutSuccessUrl("/")
 				.permitAll();
 	}
 }

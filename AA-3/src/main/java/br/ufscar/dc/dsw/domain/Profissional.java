@@ -1,6 +1,5 @@
 package br.ufscar.dc.dsw.domain;
 
-import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,7 +9,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 @SuppressWarnings("serial")
 @Entity
