@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <section class="layout-content" layout:fragment="corpo">
+
+        <nav class="navbar navbar-expand-md bg-light">
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active"><i class="oi oi-caret-right"></i>
+                        <span th:text="#{candidatura.cadastrar.label}"></span></li>
+                </ul>
+                <a class="btn btn-primary btn-md" th:href="@{/candidaturas/listar}" papel="button"> <span class="oi oi-spreadsheet" title="Listar" aria-hidden="true"></span> <span th:text="#{candidatura.listar.label}"></span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="container" id="cadastro">
+
+            <div th:replace="fragments/alert"></div>
+
+            <form th:action="${candidatura.id == null} ? @{/candidaturas/salvar} : @{/candidaturas/editar}" th:object="${candidatura}" method="POST">
+
+                <div class="form-row">
+                    <!-- tem que fazer um randomico pra gerar um id aqui-->
+                    <div class="form-group col-md-6">
+                        <label th:text="#{candidatura.id.label}" for="id"></label>
+                        <input type="number" class="form-control" id="id" th:placeholder="#{candidatura.id.label}" autofocus="autofocus" th:field="*{id}" th:classappend="${#fields.hasErrors('id')} ? is-invalid" />
+
+                        <div class="invalid-feedback">
+                            <span th:errors="*{id}"></span>
+                        </div>
+                    </div>
+                    <!-- tem que estar pré preenchido qual vaga a pessoa está se candidatando-->
+                    <div class="form-group col-md-6">
+                        <label th:text="#{candidatura.vaga.label}" for="vaga"></label>
+                        <input type="text" class="form-control" id="vaga" th:placeholder="#{candidatura.vaga.label}" autofocus="autofocus" th:field="*{vaga}" th:classappend="${#fields.hasErrors('vaga')} ? is-invalid" th:readonly="${candidatura.id != null}" />
+
+                        <div class="invalid-feedback">
+                            <span th:errors="*{vaga}"></span>
+                        </div>
+                    </div>
+                    <!-- pdf tem que ser carregado na página -->
+                    <div class="form-group col-md-6">
+                        <label th:text="#{candidatura.curriculo.label}" for="curriculo"></label>
+                        <input type="number" class="form-control" id="curriculo" th:placeholder="#{candidatura.curriculo.label}" autofocus="autofocus" th:field="*{curriculo}" th:classappend="${#fields.hasErrors('curriculo')} ? is-invalid" th:readonly="${candidatura.id != null}"
+                        />
+
+                        <div class="invalid-feedback">
+                            <span th:errors="*{curriculo}"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label th:text="#{candidatura.status.label}" for="status"></label>
+                        <input type="text" class="form-control" id="status" th:field="*{status}" th:placeholder="#{candidatura.status.label}" autofocus="autofocus" th:classappend="${#fields.hasErrors('status')} ? is-invalid" />
+
+                        <div class="invalid-feedback">
+                            <span th:errors="*{status}"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label th:text="#{candidatura.dataEntrevista.label}" for="dataEntrevista"></label>
+                        <input type="date" class="form-control" id="dataEntrevista" th:field="*{dataEntrevista}" th:placeholder="#{candidatura.dataEntrevista.label}" autofocus="autofocus" th:classappend="${#fields.hasErrors('dataEntrevista')} ? is-invalid" />
+
+                        <div class="invalid-feedback">
+                            <span th:errors="*{dataEntrevista}"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label th:text="#{candidatura.linkEntrevista.label}" for="linkEntrevista"></label>
+                        <input type="link" class="form-control" id="linkEntrevista" th:field="*{linkEntrevista}" th:placeholder="#{candidatura.linkEntrevista.label}" autofocus="autofocus" th:classappend="${#fields.hasErrors('linkEntrevista')} ? is-invalid" />
+
+                        <div class="invalid-feedback">
+                            <span th:errors="*{linkEntrevista}"></span>
+                        </div>
+                    </div>
+
+
+                    <!--
+                    <div class="form-group col-md-6">
+						<label th:text="#{candidatura.enabled.label}" for="enabled"></label> 
+						<input type="checkbox" id="enabled" class="form-control" th:field="*{enabled}" />
+					</div>
+                    -->
+                </div>
+
+                <input type="hidden" id="id" th:field="*{id}" />
+                <button type="submit" th:text="#{button.salvar.label}" class="btn btn-primary btn-sm"></button>
+            </form>
+        </div>
+    </section>
+</body>
+
+</html>

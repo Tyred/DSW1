@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+    </head>
+
+    <body>
+        <nav class="sidebar sidebar-open" th:fragment="nav-sidebar">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link " th:href="@{/}"> <i class="oi oi-home"></i> <span th:text="#{sidebar.link.home}"></span>
+                    </a>
+                </li>
+            </ul>
+
+            <div>
+                <ul class="nav nav-pills">
+                    <!-- empresas-->
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')"><span class="nav-link active" th:text="#{sidebar.titulo.empresa}"></span></li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link" th:href="@{/empresas/cadastrar}"> <i class="oi oi-plus"></i> <span th:text="#{sidebar.link.cadastrar}"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link" th:href="@{/empresas/listar}"> <i class="oi oi-spreadsheet"></i>
+                            <span th:text="#{sidebar.link.listar}"></span>
+                        </a>
+                    </li>
+                    <!-- profissionais -->
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')"><span class="nav-link active" th:text="#{sidebar.titulo.profissional}"></span></li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link" th:href="@{/profissionais/cadastrar}"> <i class="oi oi-plus"></i> <span th:text="#{sidebar.link.cadastrar}"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link" th:href="@{/profissionais/listar}"> <i class="oi oi-spreadsheet"></i>
+                            <span th:text="#{sidebar.link.listar}"></span>
+                        </a>
+                    </li>
+                    <!-- vagas-->
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_EMPRESA')"><span class="nav-link active" th:text="#{sidebar.titulo.vaga}"></span></li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_EMPRESA')">
+                        <a class="nav-link" th:href="@{/vagas/cadastrar}"> <i class="oi oi-plus"></i> <span th:text="#{sidebar.link.cadastrar}"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_EMPRESA')">
+                        <a class="nav-link" th:href="@{/empresas/minhasVagas}"> <i class="oi oi-spreadsheet"></i>
+                            <span th:text="#{sidebar.link.listar}"></span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_PRO')"><span class="nav-link active" th:text="#{sidebar.titulo.candidatura}"></span></li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_PRO')">
+                        <a class="nav-link" th:href="@{/profissionais/minhasCandidaturas}"> <i class="oi oi-spreadsheet"></i>
+                            <span th:text="#{sidebar.link.listar}"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </body>
+
+</html>
