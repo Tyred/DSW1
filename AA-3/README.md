@@ -1,116 +1,90 @@
-# AA2: Desenvolvimento de um sistema utilizando Spring MVC e JPA
+# AA3: Aprimoramento do sistema da AA2 criando uma REST API
 
-<h2> Sistema </h2>
-Sistema para oferta de vagas de estágios/empregos (A)<br /><br />
+##  Sistema
+Sistema para oferta de vagas de estágios/empregos (A)
 
-<h2> Arquitetura: </h2>
-Modelo-Visão-Controlador<br /><br />
+##  Arquitetura
+Modelo-Visão-Controlador
 
-<h2> Tecnologias </h2>
-<li>Spring MVC, Spring Data JPA, Spring Security & Thymeleaf (Lado Servidor)</li>
-<li>Javascript & CSS (Lado Cliente)</li><br />
+##  Tecnologias
+- Spring MVC, Spring Data JPA, Spring Security & Thymeleaf (Lado Servidor)
+- Javascript & CSS (Lado Cliente)
 
-<h2> Roteiro de execução </h2>
- <br />
-Na pasta AA-1, rode o comando a seguir para efetuar o deploy:
+##  Roteiro de execução
+Na pasta AA-3, rode o comando a seguir para efetuar o deploy:
 
 ```
 mvn spring-boot:run
 ```
 Importante lembrar, o tomcat não deve estar rodando localmente, é preciso parar ele para dar certo o deploy, pois o comando acima já roda um tomcat interno.
 
-Server: dsw.cdxlj1ktosxz.sa-east-1.rds.amazonaws.com<br />
-User: admin<br />
-Password: Jycq6wCcDZssF2i<br /><br/>
+Server: dsw.cdxlj1ktosxz.sa-east-1.rds.amazonaws.com  
+User: admin  
+Password: Jycq6wCcDZssF2i  
 Pra acessar pelo mysql-client, é necessário rodar o seguinte comando:
 
 ```
 mysql -h dsw.cdxlj1ktosxz.sa-east-1.rds.amazonaws.com -P 3306 -u admin -p
 ```
 
-E digitar a senha! :D<br/><br/>
-<h2>Usuários criados</h2>
-<h3>Administrador</h3>
-<li>login: admin@gmail.com</li>
-<li>senha: admin </li>
+E digitar a senha! :D
+# Usuários criados
+### Administrador
+- id: 1
+  - login: admin@gmail.com
+  - senha: admin 
 
-<h3>Empresa</h3>
-<h3>1</h3>
-<li>login: empresa@gmail.com</li>
-<li>senha: admin </li>
-<h3>2</h3>
-<li>login: empresa2@gmail.com</li>
-<li>senha: admin </li>
+### Empresa
 
-
-<h3>Profissional</h3>
-<h3>1</h3>
-<li>login: profissional@gmail.com</li>
-<li>senha: admin </li>
-<h3>2</h3>
-<li>login: profissional2@gmail.com</li>
-<li>senha: admin </li>
-<br />
-
-<h2>R1:</h2>
-
-(X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
-
-Divisão na implementação da funcionalidade: Igor (33%), Victoria (33%) e Yuri (33%) <br/>
+- id: 2
+  - login: empresa@gmail.com
+  - senha: admin 
+  
+- id: 3
+  - login: empresa2@gmail.com
+  - senha: admin 
 
 
-<h2>R2:</h2>
+### Profissional
+- id: 4
+  - login: profissional@gmail.com
+  - senha: admin 
 
-(X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
-
-Divisão na implementação da funcionalidade: Igor (33%), Victoria (33%) e Yuri (33%) <br/>
-
-
-<h2>R3:</h2>
-
-(X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
-
-Divisão na implementação da funcionalidade: Igor (15%), Victoria (25%) e Yuri (60%) <br/>
+- id: 5
+  - login: profissional2@gmail.com
+  - senha: admin 
 
 
-<h2>R4:</h2>
+# Exemplos de teste
 
-(X) Implementado () Parcialmente implementado ( ) Não implementado <br/>
+### Profissionais
 
-Divisão na implementação da funcionalidade: Igor (20%), Victoria (30%) e Yuri (50%) <br/>
+- GET localhost:8080/profissionais
 
+- POST localhost:8080/profissionais
+```
+{"nome": "teste", "email": "teste@gmail.com", "papel": "ROLE_PRO", "enabled": true, "telefone": "5511912345678", "sexo": "Masculino", "dataNascimento": "01/01/1981", "senha": "12345678", "cpf": "333.333.333-33"}
+```
 
+- GET localhost:8080/profissionais/6
 
-<h2>R5:</h2>
+- PUT localhost:8080/profissionais
+```
+{"nome": "NOVO teste", "email": "NOVOteste@gmail.com", "papel": "ROLE_PRO", "enabled": true, "telefone": "5521987654321", "sexo": "Feminino", "dataNascimento": "31/12/2020", "senha": "87654321", "cpf": "444.444.444-44"}
+```
 
-(X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
+### Empresas
 
-Divisão na implementação da funcionalidade: Igor (20%), Victoria (20%) e Yuri (60%) <br/>
+- GET localhost:8080/empresas
 
+- POST localhost:8080/empresas
+```
+{"nome":"Odebrechht", "email":"odebrechht@gmail.com", "senha": "milmilhoes", "papel":"ROLE_EMPRESA", "enabled":true, "descricao":"Esquema de pirâmide", "cidade":"Brasília","cnpj":"06.144.757/0001-72"}
+```
 
+- GET localhost:8080/empresas/7
 
-<h2>R6:</h2>
-
-(X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
-
-Divisão na implementação da funcionalidade: Igor (20%), Victoria (30%) e Yuri (50%) <br/>
-
-
-<h2>R7:</h2>
-
-(X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
-
-Divisão na implementação da funcionalidade: Igor (30%), Victoria (30%) e Yuri (40%) <br/>
-
-<h2>R8:</h2>
-
-() Implementado (X) Parcialmente implementado ( ) Não implementado <br/>
-
-Divisão na implementação da funcionalidade: Igor (35%), Victoria (25%) e Yuri (40%) <br/>
-ps: falta a funcionalidade de enviar email
-
-<h2>R9:</h2>
-
-(X) Implementado ( ) Parcialmente implementado ( ) Não implementado <br/>
-
-Divisão na implementação da funcionalidade: Igor (15%), Victoria (70%) e Yuri (15%) <br/>
+- PUT localhost:8080/empresas/7
+```
+{"nome":"Casa de repouso", "email":"nossolar@gmail.com", "senha": "maislavagem", "papel":"ROLE_EMPRESA", "enabled":true, "descricao":"Adivinha só", "cidade":"Cuiabá","cnpj":"17.255.868/0005-83"}
+```
