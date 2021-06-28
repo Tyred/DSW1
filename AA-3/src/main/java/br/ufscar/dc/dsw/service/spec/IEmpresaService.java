@@ -10,6 +10,8 @@ public interface IEmpresaService {
 
 	List<Empresa> buscarTodos();
 
+	List<Empresa> buscarPorCidade(String cidade);
+
 	void salvar(Empresa empresa);
 
 	void excluir(Long id);	

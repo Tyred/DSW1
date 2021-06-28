@@ -31,6 +31,11 @@ public class EmpresaService implements IEmpresaService {
 	}
 
 	@Transactional(readOnly = true)
+	public List<Empresa> buscarPorCidade(String cidade) {
+		return dao.findByCidadeContains(cidade);
+	}
+
+	@Transactional(readOnly = true)
 	public List<Empresa> buscarTodos() {
 		return dao.findAll();
 	}

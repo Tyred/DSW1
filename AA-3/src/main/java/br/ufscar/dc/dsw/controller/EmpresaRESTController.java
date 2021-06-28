@@ -89,6 +89,16 @@ public class EmpresaRESTController {
 		return ResponseEntity.ok(empresa);
 	}
 
+	@GetMapping(path = "/empresas/cidades/{cidade}")
+	public ResponseEntity<List<Empresa>> listaCidade(@PathVariable("cidade") String cidade) {
+		List<Empresa> empresas = service.buscarPorCidade(cidade);
+		System.out.println("Size: " + empresas.size());
+		if (empresas == null || empresas.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(empresas);
+	}
+
 	@PostMapping(path = "/empresas")
 	@ResponseBody
 	public ResponseEntity<Empresa> cria(@RequestBody JSONObject json) {
