@@ -91,7 +91,7 @@ public class AA3Application {
             Vagas v1 = new Vagas();
             v1.setDescricao("Programador Web");
             v1.setRemuneracao(BigDecimal.valueOf(3500));
-            v1.setDataLimite("29/06/2021");
+            v1.setDataLimite("20/07/2021");
             v1.setEmpresa(e1);
             vagasDAO.save(v1);
             
@@ -112,38 +112,13 @@ public class AA3Application {
             Vagas v4 = new Vagas();
             v4.setDescricao("Vaga Aberta");
             v4.setRemuneracao(BigDecimal.valueOf(4200));
-            v4.setDataLimite("23/06/2021");
+            v4.setDataLimite("23/07/2021");
             v4.setEmpresa(e1);
             vagasDAO.save(v4);
 
             // Candidaturas
             Candidatura c1 = new Candidatura();
             c1.setCurriculo("Curriculo.pdf");
-            c1.setProfissional(p1);
-            c1.setVaga(v2);
-            c1.setStatus("ABERTO");
-            candidaturaDAO.save(c1);
-
-            Candidatura c2 = new Candidatura();
-            c2.setCurriculo("Curriculo.pdf");
-            c2.setProfissional(p1);
-            c2.setVaga(v4);
-            c2.setStatus("ABERTO");
-            candidaturaDAO.save(c2);
-
-            Candidatura c3 = new Candidatura();
-            c3.setCurriculo("Curriculo.pdf");
-            c3.setProfissional(p2);
-            c3.setVaga(v1);
-            c3.setStatus("ABERTO");
-            candidaturaDAO.save(c3);
-        
-            Candidatura c4 = new Candidatura();
-            c4.setCurriculo("Curriculo.pdf");
-            c4.setProfissional(p2);
-            c4.setVaga(v2);
-            c4.setStatus("ABERTO");
-            candidaturaDAO.save(c4);
         };
     }
 }

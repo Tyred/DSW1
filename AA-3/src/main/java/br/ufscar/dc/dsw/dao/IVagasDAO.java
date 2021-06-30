@@ -22,6 +22,9 @@ public interface IVagasDAO extends CrudRepository<Vagas, Long>{
 
 	void deleteById(Long id);
 
+    @Query("SELECT v FROM Vagas v WHERE v.empresa.id = :id AND FUNCTION('STR_TO_DATE', v.dataLimite, '%d/%m/%Y') >= CURRENT_DATE")
+    public List<Vagas> getVagasAbertasByEmpresa(@Param("id") Long id);
+
     @Query("SELECT v FROM Vagas v WHERE FUNCTION('STR_TO_DATE', v.dataLimite, '%d/%m/%Y') >= CURRENT_DATE")
     public List<Vagas> getVagasAbertas();
 
