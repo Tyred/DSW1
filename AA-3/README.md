@@ -88,3 +88,10 @@ E digitar a senha! :D
 ```
 {"nome":"Casa de repouso", "email":"nossolar@gmail.com", "senha": "maislavagem", "papel":"ROLE_EMPRESA", "enabled":true, "descricao":"Adivinha só", "cidade":"Cuiabá","cnpj":"17.255.868/0005-83"}
 ```
+
+### Vagas
+- GET localhost:8080/vagas
+
+- GET localhost:8080/vagas/2
+
+- GET localhost:8080/vagas/empresas/2
